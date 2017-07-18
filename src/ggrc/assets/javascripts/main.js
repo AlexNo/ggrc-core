@@ -260,6 +260,9 @@ import './components/related-objects/related-people-access-control-group';
 import './components/custom-roles/custom-roles';
 import './components/custom-roles/custom-roles-modal';
 
+// Modules
+import './modules';
+
 // Bootstrap
 import './apps/dashboard';
 import './dashboard';
