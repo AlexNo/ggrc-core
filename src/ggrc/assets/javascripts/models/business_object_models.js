@@ -517,4 +517,4 @@
       this.dispatch('refreshRelatedDocuments');
     }
   });
-})(this.can);
+})(window.can);

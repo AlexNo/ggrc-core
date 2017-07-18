@@ -380,4 +380,4 @@
       auditable: 'CMS.Models.get_stub'
     }
   }, {});
-})(this.can, this.can.$);
+})(window.can, window.can.$);

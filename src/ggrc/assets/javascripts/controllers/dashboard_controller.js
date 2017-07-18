@@ -654,4 +654,4 @@
       this.show_hide_titles();
     }
   });
-})(this.can, this.can.$);
+})(window.can, window.can.$);

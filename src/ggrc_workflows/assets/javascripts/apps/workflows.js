@@ -679,4 +679,4 @@
     }
     draftOnUpdateMixin.add_to(model);
   });
-})(this.can.$, this.CMS, this.GGRC);
+})(window.can.$, window.CMS, window.GGRC);

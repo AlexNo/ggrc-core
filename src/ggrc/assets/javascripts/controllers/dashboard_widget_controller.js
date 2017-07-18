@@ -51,4 +51,4 @@
           this.options.widget_view;
     }
   });
-})(this.can, this.can.$);
+})(window.can, window.can.$);

@@ -135,4 +135,4 @@
       }
     }
   });
-})(this, jQuery, can);
+})(window, jQuery, can);

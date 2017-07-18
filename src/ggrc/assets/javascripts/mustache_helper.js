@@ -3,9 +3,10 @@
     Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 */
 
-(function (namespace, $, can) {
+(function ($, can) {
 // Chrome likes to cache AJAX requests for Mustaches.
   var mustache_urls = {};
+  var Mustache = can.Mustache;
   $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
     if (/\.mustache$/.test(options.url)) {
       if (mustache_urls[options.url]) {
@@ -2931,4 +2932,4 @@ Example:
           return options.fn(options.contexts.add({hasRole: hasRole}));
         }, hasRoleForContextDfd);
     });
-})(this, jQuery, can);
+})(jQuery, can);

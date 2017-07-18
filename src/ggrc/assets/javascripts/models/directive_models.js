@@ -223,4 +223,4 @@ CMS.Models.Directive("CMS.Models.Contract", {
   }
 });
 
-})(this.can);
+})(window.can);
