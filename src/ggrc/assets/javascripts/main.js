@@ -4,7 +4,6 @@
 */
 
 import './permission.js';
-import './bootstrap/wysihtml5.js';
 import './bootstrap/sticky-popover.js';
 import './bootstrap/modal-ajax.js';
 import './bootstrap/modal-form.js';
@@ -24,7 +23,6 @@ import './plugins/utils/tree-view-utils.js';
 import './plugins/utils/dashboards-utils.js';
 import './plugins/datepicker.js';
 import './plugins/can_control.js';
-import './plugins/wysiwyg.js';
 import './plugins/autocomplete.js';
 import './plugins/ajax_extensions.js';
 import './plugins/canjs_extensions.js';
