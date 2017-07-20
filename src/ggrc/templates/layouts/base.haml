@@ -14,9 +14,12 @@
       -block title
         Governance, Risk and Compliance
 
-    -assets "dashboard-css"
-      %link{ rel:'stylesheet', type:'text/css', href:"={ASSET_URL|with_static_subdomain}" }
-    -endassets
+    -#-assets "dashboard-css"
+    -#  %link{ rel:'stylesheet', type:'text/css', href:"={ASSET_URL|with_static_subdomain}" }
+    -#-endassets
+
+    %link{ rel:'stylesheet', type:'text/css', href:"/static/dashboard.css" }
+    %link{ rel:'stylesheet', type:'text/css', href:"/static/vendor.css" }
 
     %link{ 'href': '={ url_for("static", filename="favicon.ico") }', 'rel':'icon', 'type':'image/x-icon' }
 
@@ -48,39 +51,33 @@
 
     -block extra_templates
 
-    -assets "dashboard-js"
-      %script{ type:'text/javascript', src:"={ASSET_URL|with_static_subdomain}" }
-    -endassets
+    -#-assets "dashboard-js"
+    -#  %script{ type:'text/javascript', src:"={ASSET_URL|with_static_subdomain}" }
+    -#-endassets
+    -#
+    -#-block extra_assets
+    -#
+    -#-assets "app-init-js"
+    -#  %script{ type:'text/javascript', src:"={ASSET_URL|with_static_subdomain}" }
+    -#-endassets
 
-    -block extra_assets
-
-    -assets "app-init-js"
-      %script{ type:'text/javascript', src:"={ASSET_URL|with_static_subdomain}" }
-    -endassets
+    %script{ type:'text/javascript', src:"/static/vendor_.js" }
+    %script{ type:'text/javascript', src:"/static/dashboard_.js" }
 
     :javascript
-      GGRC.Tracker.timing("dashboard", "exec_scripts", Date.now() - st, "dashboard.js finished executing");
-      window.st=Date.now();
-      GGRC.Tracker.timing("dashboard", "load_templates", Date.now() - st, "dashboard-templates.js finished loading and executing");
-      $(function() {
-        GGRC.Tracker.timing("dashboard", "exec_ready_handlers", Date.now() - st, "last document.ready handler fired");
-      });
 
     -# Google Web Font(s)
     -#NOTE: This resource occasionally hangs and prevents page from rendering, so loaded after the fact via jquery
     :javascript
-      (function (win, doc, GGRC, $) {
+      (function (win, doc, GGRC) {
         var originalError = win.onerror;
         win.onerror = function (message, url, linenumber) {
-          if ($) {
-            $(doc.body).trigger("ajax:flash", {"error" : message});
-          }
           if (GGRC && GGRC.Tracker) {
             GGRC.Tracker.exception(message + " (at " + url + ":" + linenumber + ")");
           }
           originalError && originalError.apply(this, arguments);
         };
-      })(window, document, window.GGRC, jQuery);
+      })(window, document, window.GGRC);
 
     -if config.get("GOOGLE_ANALYTICS_ID")
       :javascript
