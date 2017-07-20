@@ -130,8 +130,7 @@ dashboard-js-files:
   - controllers/archive_modal_controller.js
   - controllers/delete_modal_controller.js
   - controllers/help_controller.js
-  - controllers/quick_search_controller.js
-  - controllers/recently_viewed_controller.js
+  - controllers/lhn_controllers.js
   - controllers/tree/tree-loader.js
   - controllers/tree/tree-view.js
   - controllers/tree/tree-view-node.js

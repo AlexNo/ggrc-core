@@ -44,7 +44,6 @@ import './components/view-models/tree-people-base-vm';
 import './components/base-objects/pagination';
 
 // Controllers
-import './controllers/filterable_controller';
 import './controllers/dashboard_widgets_controller';
 import './controllers/info_widget_controller';
 import './controllers/summary_widget_controller';
@@ -53,8 +52,6 @@ import './controllers/modals_controller';
 import './controllers/archive_modal_controller';
 import './controllers/delete_modal_controller';
 import './controllers/help_controller';
-import './controllers/quick_search_controller';
-import './controllers/recently_viewed_controller';
 import './controllers/unmap_modal_controller';
 import './controllers/info_pin_controller';
 import './controllers/automapper_controller';
