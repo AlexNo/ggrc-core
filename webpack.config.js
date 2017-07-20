@@ -33,13 +33,12 @@ module.exports = {
     'my-assessments': 'ggrc/my-assessments',
     admin: 'ggrc/admin',
     import: 'ggrc/import',
-    export: 'ggrc/export',
-    dashboard: GGRC.get_dashboard_modules()
+    export: 'ggrc/export'
   },
   output: {
     filename: '[name]_.js',
-    path: path.join(__dirname, './src/ggrc/assets/stylesheets/'),
-    publicPath: '/src/ggrc/static/'
+    path: path.join(__dirname, './src/ggrc/static/'),
+    publicPath: '/static/'
   },
   module: {
     rules: [{
@@ -73,6 +72,9 @@ module.exports = {
     }, {
       test: /wysihtml5-0\.4\.0pre\.js$/,
       loader: 'exports-loader?wysihtml5'
+    }, {
+      test: /\.mustache/,
+      loader: 'raw-loader'
     }]
   },
   devtool: 'eval',
@@ -97,6 +99,9 @@ module.exports = {
       'window.jQuery': 'jquery',
       _: 'lodash',
       moment: 'moment'
+    }),
+    new webpack.DefinePlugin({
+      GGRC_SETTINGS_MODULE: JSON.stringify(process.env.GGRC_SETTINGS_MODULE)
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
