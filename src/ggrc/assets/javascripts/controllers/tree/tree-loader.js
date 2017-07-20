@@ -308,4 +308,4 @@
       return dfd;
     }
   });
-})(window.can, window.$);
+})(window.can, window.can.$);

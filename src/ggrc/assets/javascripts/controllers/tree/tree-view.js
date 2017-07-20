@@ -86,15 +86,6 @@
 
     init: function (el, opts) {
       var setAllowMapping;
-      var self = this;
-      var states = GGRC.Utils.State
-        .getStatesForModel(this.options.model.shortName);
-
-      var filterStates = states.map(function (state) {
-        return {value: state};
-      });
-
-      this.options.attr('filter_states', filterStates);
 
       this.element.closest('.widget')
         .on('widget_hidden', this.widget_hidden.bind(this));
@@ -168,10 +159,8 @@
     },
 
     init_view: function () {
-      var self = this;
       var dfds = [];
       var optionsDfd;
-      var statusControl;
 
       if (this.options.header_view && this.options.show_header) {
         optionsDfd = $.when(this.options);
@@ -179,19 +168,6 @@
           can.view(this.options.header_view, optionsDfd).then(
             this._ifNotRemoved(function (frag) {
               this.element.before(frag);
-
-              statusControl = this.element.parent()
-                .find('.tree-filter__status-wrap');
-              // set state filter (checkboxes)
-              can.bind.call(statusControl.ready(function () {
-                var selectStateList = self.options.attr('selectStateList');
-
-                self.options.attr('filter_states').forEach(function (item) {
-                  if (selectStateList.indexOf(item.value) > -1) {
-                    item.attr('checked', true);
-                  }
-                });
-              }));
             }.bind(this))));
       }
 
@@ -657,4 +633,4 @@
       this.element.children('.tree-item, .tree-item-placeholder').remove();
     }
   });
-})(window.can, window.$);
+})(window.can, window.can.$);

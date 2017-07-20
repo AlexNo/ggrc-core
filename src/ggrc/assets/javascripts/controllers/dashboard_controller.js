@@ -28,7 +28,9 @@
         this.hide_widget_area();
         this.init_default_widgets();
         this.init_widget_area();
-        this.init_info_pin();
+        if (!GGRC.Utils.CurrentPage.isAdmin()) {
+          this.init_info_pin();
+        }
       }.bind(this));
     },
 
@@ -388,7 +390,11 @@
         this.options.contexts.attr('active_widget').selector;
       var widget = $(panel);
       var dashboardCtr = this.options.dashboard_controller;
-      var infopinCtr = dashboardCtr.info_pin.element.control();
+      var infopinCtr;
+
+      if (dashboardCtr.info_pin) {
+        infopinCtr = dashboardCtr.info_pin.element.control();
+      }
 
       if (infopinCtr) {
         infopinCtr.hideInstance();

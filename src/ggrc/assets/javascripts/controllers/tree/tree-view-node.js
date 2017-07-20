@@ -434,4 +434,4 @@
         this.hash_fragment()].join('');
     }
   });
-})(window.can, window.$);
+})(window.can, window.can.$);
