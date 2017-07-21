@@ -1,69 +1,69 @@
 /*!
-   Copyright (C) 2017 Google Inc.
-   Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
-*/
+ Copyright (C) 2017 Google Inc.
+ Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
+ */
 
-import './permission.js';
-import './bootstrap/modal-ajax.js';
-import './bootstrap/modal-form.js';
-import './plugins/lodash_helpers.js';
-import './plugins/persistent_notifier.js';
-import './ggrc_base.js';
-import './apps/base_widgets.js';
-import './application.js';
-import './plugins/ggrc_utils.js';
-import './plugins/utils/ca-utils.js';
-import './plugins/utils/query-api-utils.js';
-import './plugins/utils/current-page-utils.js';
-import './plugins/utils/tree-view-utils.js';
-import './plugins/utils/dashboards-utils.js';
-import './plugins/datepicker.js';
-import './plugins/can_control.js';
-import './plugins/autocomplete.js';
-import './plugins/ajax_extensions.js';
-import './plugins/canjs_extensions.js';
-import './plugins/component_registry.js';
-import './plugins/openclose.js';
-import './plugins/tooltip.js';
-import './plugins/popover.js';
-import './plugins/popover_template.js';
-import './mustache_helper.js';
-import './generated/ggrc_filter_query_parser.js';
+import '../../permission';
+import '../../bootstrap/modal-ajax';
+import '../../bootstrap/modal-form';
+import '../../plugins/lodash_helpers';
+import '../../plugins/persistent_notifier';
+import '../../ggrc_base';
+import '../../apps/base_widgets';
+import '../../application';
+import '../../plugins/ggrc_utils';
+import '../../plugins/utils/ca-utils';
+import '../../plugins/utils/query-api-utils';
+import '../../plugins/utils/current-page-utils';
+import '../../plugins/utils/tree-view-utils';
+import '../../plugins/utils/dashboards-utils';
+import '../../plugins/datepicker';
+import '../../plugins/can_control';
+import '../../plugins/autocomplete';
+import '../../plugins/ajax_extensions';
+import '../../plugins/canjs_extensions';
+import '../../plugins/component_registry';
+import '../../plugins/openclose';
+import '../../plugins/tooltip';
+import '../../plugins/popover';
+import '../../plugins/popover_template';
+import '../../mustache_helper';
+import '../../generated/ggrc_filter_query_parser';
 
 // Models
-import './models';
+import '../../models';
 
 // Controllers
-import './controllers/tree/tree-loader';
-import './controllers/tree/tree-view';
-import './controllers/tree/tree-view-node';
-import './controllers/tree/list_view_controller';
-import './controllers/dashboard_widgets_controller';
-import './controllers/dashboard_widget_controller';
-import './controllers/modals_controller';
-import './controllers/help_controller';
-import './controllers/unmap_modal_controller';
-import './controllers/dashboard_controller';
+import '../../controllers/tree/tree-loader';
+import '../../controllers/tree/tree-view';
+import '../../controllers/tree/tree-view-node';
+import '../../controllers/tree/list_view_controller';
+import '../../controllers/dashboard_widgets_controller';
+import '../../controllers/dashboard_widget_controller';
+import '../../controllers/modals_controller';
+import '../../controllers/help_controller';
+import '../../controllers/unmap_modal_controller';
+import '../../controllers/dashboard_controller';
 
 // Helpers
-import './helpers/mapping_helpers';
+import '../../helpers/mapping_helpers';
 
 // Modules and Apps
-import './modules/widget_descriptor';
-import './modules/widget_list';
-import './pbc/workflow_controller';
-import './apps/quick_search';
-import './apps/business_objects';
-import './apps/custom_attributes';
+import '../../modules/widget_descriptor';
+import '../../modules/widget_list';
+import '../../pbc/workflow_controller';
+import '../../apps/quick_search';
+import '../../apps/business_objects';
+import '../../apps/custom_attributes';
 
 // Components
-import './components/dropdown/dropdown';
-import './components/datepicker/datepicker';
+import '../../components/dropdown/dropdown';
+import '../../components/datepicker/datepicker';
 
 // Modules
-import './modules';
+import '../../modules';
 
-import {initWidgets} from './modules/widgets';
+import {initWidgets} from '../../modules/widgets';
 
 var $area = $('.area').first();
 

@@ -8,6 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const _ = require('lodash');
 const path = require('path');
+const ENV = process.env;
 const GGRC = {
   get_dashboard_modules: function () {
     return _.compact(_.map(process.env.GGRC_SETTINGS_MODULE.split(' '), function (module) {
@@ -33,10 +34,13 @@ module.exports = {
     'my-assessments': 'ggrc/my-assessments',
     admin: 'ggrc/admin',
     import: 'ggrc/import',
-    export: 'ggrc/export'
+    export: 'ggrc/export',
+    workflow: 'ggrc/workflow',
+    dashboard: 'ggrc/dashboard',
+    styles: GGRC.get_dashboard_modules()
   },
   output: {
-    filename: '[name]_.js',
+    filename: isProduction() ? '[name].[chunkhash].js' : '[name]_.js',
     path: path.join(__dirname, './src/ggrc/static/'),
     publicPath: '/static/'
   },
@@ -77,7 +81,7 @@ module.exports = {
       loader: 'raw-loader'
     }]
   },
-  devtool: 'eval',
+  // devtool: 'eval',
   resolve: {
     modules: ['node_modules', 'bower_components', 'third_party']
       .map(function (dir) {
@@ -85,7 +89,7 @@ module.exports = {
       }),
     alias: {
       'can': 'canjs/amd/can/',
-      'ggrc': './src/ggrc/assets/javascripts'
+      'ggrc': './src/ggrc/assets/javascripts/entrypoints'
     }
   },
   plugins: [
@@ -106,10 +110,17 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new UglifyJSPlugin()
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ],
   stats: {
     errorDetails: true
   }
 };
+
+if (isProduction()) {
+  module.exports.plugins.push(new UglifyJSPlugin());
+}
+
+function isProduction() {
+  return ENV.NODE_ENV === 'production';
+}
