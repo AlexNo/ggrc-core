@@ -11,12 +11,7 @@ import '../../plugins/persistent_notifier';
 import '../../ggrc_base';
 import '../../apps/base_widgets';
 import '../../application';
-import '../../plugins/ggrc_utils';
-import '../../plugins/utils/ca-utils';
-import '../../plugins/utils/query-api-utils';
-import '../../plugins/utils/current-page-utils';
-import '../../plugins/utils/tree-view-utils';
-import '../../plugins/utils/dashboards-utils';
+import '../../plugins/utils';
 import '../../plugins/datepicker';
 import '../../plugins/can_control';
 import '../../plugins/autocomplete';
@@ -45,9 +40,6 @@ import '../../controllers/help_controller';
 import '../../controllers/unmap_modal_controller';
 import '../../controllers/dashboard_controller';
 
-// Helpers
-import '../../helpers/mapping_helpers';
-
 // Modules and Apps
 import '../../modules/widget_descriptor';
 import '../../modules/widget_list';
@@ -59,6 +51,7 @@ import '../../apps/custom_attributes';
 // Components
 import '../../components/dropdown/dropdown';
 import '../../components/datepicker/datepicker';
+import '../../components/related-objects/related-reference-urls';
 
 // Modules
 import '../../modules';

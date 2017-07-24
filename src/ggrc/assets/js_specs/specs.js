@@ -14,5 +14,5 @@ import '../javascripts/components/csv/export'
 import '../javascripts/components/csv/csv-template'
 import '../javascripts/components/csv/import'
 
-let testsContext = require.context('../../..', true, /_spec\.js$/);
+var testsContext = require.context('../../..', true, /_spec\.js$/);
 testsContext.keys().forEach(testsContext);

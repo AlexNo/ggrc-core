@@ -12,15 +12,7 @@ import '../../plugins/persistent_notifier';
 import '../../ggrc_base';
 import '../../apps/base_widgets';
 import '../../application';
-import '../../plugins/ggrc_utils';
-import '../../plugins/utils/advanced-search-utils';
-import '../../plugins/utils/ca-utils';
-import '../../plugins/utils/query-api-utils';
-import '../../plugins/utils/current-page-utils';
-import '../../plugins/utils/state-utils';
-import '../../plugins/utils/ggrcq-utils';
-import '../../plugins/utils/tree-view-utils';
-import '../../plugins/utils/dashboards-utils';
+import '../../plugins/utils';
 import '../../plugins/datepicker';
 import '../../plugins/can_control';
 import '../../plugins/autocomplete';
@@ -62,9 +54,6 @@ import '../../controllers/automapper_controller';
 import '../../controllers/dashboard_controller';
 import '../../controllers/quick_form_controller';
 import '../../controllers/mapper';
-
-// Helpers
-import '../../helpers/mapping_helpers';
 
 // Modules and Apps
 import '../../modules/widget_descriptor';
@@ -174,6 +163,7 @@ import '../../components/inline/inline';
 import '../../components/assessment/info-pane/confirm-inline-control-title';
 import '../../components/csv/export';
 import '../../components/csv/import';
+import '../../components/related-objects/related-reference-urls';
 
 // Modules
 import '../../modules';

@@ -10,6 +10,9 @@ import '../mapped-objects/mapped-related-information';
 import '../mapped-objects/mapped-comments';
 import '../../add-mapping-button/add-mapping-button';
 import '../mapped-objects/mapped-controls';
+import '../../inline/inline-form-control';
+import './inline-item';
+import '../../form/form-required-check';
 
 (function (can, GGRC, CMS) {
   'use strict';
