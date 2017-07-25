@@ -9,23 +9,6 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const _ = require('lodash');
 const path = require('path');
 const ENV = process.env;
-const GGRC = {
-  get_dashboard_modules: function () {
-    return _.compact(_.map(process.env.GGRC_SETTINGS_MODULE.split(' '), function (module) {
-      var name;
-      if (/^ggrc/.test(module)) {
-        name = module.split('.')[0];
-      }
-      if (module === 'development') {
-        name = 'ggrc';
-      }
-      if (!name) {
-        return '';
-      }
-      return './src/' + name + '/assets/assets';
-    }));
-  }
-};
 
 module.exports = {
   entry: {
@@ -36,8 +19,7 @@ module.exports = {
     import: 'ggrc/import',
     export: 'ggrc/export',
     workflow: 'ggrc/workflow',
-    dashboard: 'ggrc/dashboard',
-    styles: GGRC.get_dashboard_modules()
+    dashboard: 'ggrc/dashboard'
   },
   output: {
     filename: isProduction() ? '[name].[chunkhash].js' : '[name]_.js',
