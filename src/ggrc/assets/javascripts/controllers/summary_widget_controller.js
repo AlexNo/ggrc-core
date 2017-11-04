@@ -4,6 +4,7 @@
 */
 
 import '../components/add-object-button/add-object-button';
+import '../components/assessment_generator';
 
 export default can.Control({
   defaults: {

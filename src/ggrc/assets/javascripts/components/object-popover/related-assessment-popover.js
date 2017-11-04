@@ -3,6 +3,13 @@
  Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
  */
 
+import '../custom-attributes/custom-attributes-field-view';
+import '../object-list-item/comment-list-item';
+import '../tabs/tab-container';
+import '../show-more/show-more';
+import '../form/form-validation-icon';
+import '../mapped-objects/mapped-objects';
+import './object-popover';
 import {convertValuesToFormFields} from '../../plugins/utils/ca-utils';
 
 (function (can) {

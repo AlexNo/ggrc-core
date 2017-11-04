@@ -25,6 +25,8 @@ import './get-owner-people-list';
 import './tree-people-with-role-list-field';
 import '../advanced-search/advanced-search-filter-container';
 import '../advanced-search/advanced-search-mapping-container';
+import '../dropdown/multiselect-dropdown';
+import '../assessment_generator';
 import template from './templates/tree-widget-container.mustache';
 import * as StateUtils from '../../plugins/utils/state-utils';
 import {REFRESH_RELATED} from '../../events/eventTypes';

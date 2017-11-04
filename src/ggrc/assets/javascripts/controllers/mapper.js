@@ -9,6 +9,7 @@ import '../components/object-mapper/object-mapper';
 import '../components/object-generator/object-generator';
 import '../components/object-search/object-search';
 import '../components/unified-mapper/mapper-results';
+import '../components/mapping-controls/mapping-type-selector';
 
 (function (can, $) {
   var selectors = ['unified-mapper', 'unified-search']

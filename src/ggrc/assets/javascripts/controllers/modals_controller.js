@@ -3,7 +3,12 @@
  Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
  */
 
-import '../components/access_control_list/access_control_list_roles_helper'
+import '../components/access_control_list/access_control_list_roles_helper';
+import '../components/assessment/assessment-people';
+import '../components/assessment/assessment-object-type-dropdown';
+import '../components/assessment_attributes';
+import '../components/textarea-array/textarea-array';
+import '../components/object-list-item/object-list-item-updater';
 
 (function (can, $) {
   can.Control('GGRC.Controllers.Modals', {
