@@ -3,7 +3,7 @@
  Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
  */
 
-/*  GGRC.ListLoaders.MappingResult
+/*  MappingResult
  *
  *  - `instance`: The resulting item itself
  *  - `mappings`: Essentially, the reason(s) the instance appears in the
@@ -18,7 +18,7 @@
  *  For CrossListLoader, the mappings are (`result`, `binding`), where
  *    `binding` is the "remote binding" which
  */
-can.Map.extend('GGRC.ListLoaders.MappingResult', {}, {
+const MappingResult = can.Map.extend({}, {
   init: function (instance, mappings, binding) {
     if (!mappings) {
       // Assume item was passed in as an object
@@ -38,8 +38,8 @@ can.Map.extend('GGRC.ListLoaders.MappingResult', {}, {
   _make_mappings: function (mappings) {
     mappings = mappings || [];
     return mappings.map(function (mapping) {
-      if (!(mapping instanceof GGRC.ListLoaders.MappingResult))
-        mapping = new GGRC.ListLoaders.MappingResult(mapping);
+      if (!(mapping instanceof MappingResult))
+        mapping = new MappingResult(mapping);
       return mapping;
     });
   },
@@ -175,3 +175,5 @@ can.Map.extend('GGRC.ListLoaders.MappingResult', {}, {
     }
   },
 });
+
+export default MappingResult;

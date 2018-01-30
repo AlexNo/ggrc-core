@@ -5,6 +5,7 @@
 
 import RefreshQueue from '../refresh_queue';
 import ListBinding from './list-binding';
+import MappingResult from './mapping-result';
 
 export default can.Construct({
   binding_factory: function (instance, loader) {
@@ -21,7 +22,7 @@ export default can.Construct({
   },
 
   make_result: function (instance, mappings, binding) {
-    return new GGRC.ListLoaders.MappingResult(instance, mappings, binding);
+    return new MappingResult(instance, mappings, binding);
   },
 
   find_result_by_instance: function (result, list) {

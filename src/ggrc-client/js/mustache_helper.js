@@ -13,6 +13,7 @@ import {
   isAdmin,
 } from './plugins/utils/current-page-utils';
 import RefreshQueue from './models/refresh_queue';
+import MappingResult from './models/mappers/mapping-result';
 import Permission from './permission';
 import _ from 'lodash';
 
@@ -1028,7 +1029,7 @@ Mustache.registerHelper("is_allowed_all", function (action, instances, options) 
       , base_mappings = []
       ;
 
-    if (instance instanceof GGRC.ListLoaders.MappingResult) {
+    if (instance instanceof MappingResult) {
       instance.walk_instances(function (inst, mapping) {
         if (can.reduce(mapping.mappings, function (a, b) { return a || (b.instance === true); }, false)) {
           base_mappings.push(inst);
