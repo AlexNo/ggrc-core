@@ -12,6 +12,7 @@ import ReifyingListLoader from './reifying-list-loader';
 import SearchListLoader from './search-list-loader';
 import CustomFilteredListLoader from './custom-filtered-list-loader';
 import TypeFilteredListLoader from './type-filtered-list-loader';
+import AttrFilteredListLoader from './attr-filtered-list-loader';
 
 GGRC.MapperHelpers = {};
 
@@ -47,7 +48,7 @@ GGRC.MapperHelpers.TypeFilter = function TypeFilter(source, modelName) {
 
 GGRC.MapperHelpers.AttrFilter = function AttrFilter(source, filterName,
                                                     keyword, type) {
-  return new GGRC.ListLoaders.AttrFilteredListLoader(source, filterName,
+  return new AttrFilteredListLoader(source, filterName,
     keyword, type);
 };
 

@@ -5,8 +5,8 @@
 
 import StubFilteredListLoader from './stub-filtered-list-loader';
 
-StubFilteredListLoader(
-  'GGRC.ListLoaders.AttrFilteredListLoader', {}, {
+export default StubFilteredListLoader(
+  {}, {
     init: function (source, prop, value, type) {
       var filterFn = function (binding) {
         // TODO: We should filter by type as well
