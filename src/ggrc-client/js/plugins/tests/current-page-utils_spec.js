@@ -7,6 +7,7 @@ import * as TreeViewUtils from '../utils/tree-view-utils';
 import * as SnapshotUtils from '../utils/snapshot-utils';
 import * as CurrentPageUtils from '../utils/current-page-utils';
 import * as QueryAPI from '../utils/query-api-utils';
+import Mappings from '../../models/mappers/mappings';
 
 describe('GGRC Utils CurrentPage', function () {
   let pageType;
@@ -428,7 +429,7 @@ describe('GGRC Utils CurrentPage', function () {
           done();
         }
 
-        spyOn(GGRC.Mappings, 'getMappingList')
+        spyOn(Mappings, 'getMappingList')
           .and.returnValue(['Control']);
 
         method().then(validateResult);
@@ -453,7 +454,7 @@ describe('GGRC Utils CurrentPage', function () {
           done();
         }
 
-        spyOn(GGRC.Mappings, 'getMappingList')
+        spyOn(Mappings, 'getMappingList')
           .and.returnValue(['Assessment']);
 
         method().then(validateResult);

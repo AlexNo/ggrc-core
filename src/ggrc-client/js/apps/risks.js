@@ -9,6 +9,7 @@ import {
   Multi,
   TypeFilter,
 } from '../models/mappers/mapper-helpers';
+import Mappings from '../models/mappers/mappings';
 
 (function ($, CMS, GGRC) {
   let RisksExtension = {};
@@ -129,7 +130,7 @@ import {
     };
 
     // patch Person to extend query for dashboard
-    GGRC.Mappings.modules.ggrc_core
+    Mappings.modules.ggrc_core
       .Person.related_objects_via_search
       .observe_types.push('Risk', 'Threat');
 
@@ -141,7 +142,7 @@ import {
         _mixins: ['related', 'related_risk', 'related_threat'],
       });
     });
-    new GGRC.Mappings('ggrc_risks', mappings);
+    new Mappings('ggrc_risks', mappings);
   };
 
   // Override GGRC.extra_widget_descriptors and GGRC.extra_default_widgets

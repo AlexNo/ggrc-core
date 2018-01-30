@@ -17,7 +17,7 @@ import {
 } from './mapper-helpers';
 
 /*
-  class GGRC.Mappings
+  class Mappings
   represents everything known about how GGRC objects connect to each other.
 
   a Mappings instance contains the set of known mappings for a module, such as "ggrc_core"
@@ -28,14 +28,14 @@ import {
   { <mixin name or source object type> : {
       _mixins : [ <mixin name>, ... ],
       _canonical : { <option type> : <name of mapping in parent object>, ... }
-      <mapping name> : GGRC.Mappings.Proxy(...) | GGRC.Mappings.Direct(...) | GGRC.Mappings.Indirect(...)
-                      | GGRC.Mappings.Multi(...) | GGRC.Mappings.TypeFilter(...) | GGRC.Mappings.Cross(...)
-                      | GGRC.Mappings.CustomFilter(...),
+      <mapping name> : Mappings.Proxy(...) | Mappings.Direct(...) | Mappings.Indirect(...)
+                      | Mappings.Multi(...) | Mappings.TypeFilter(...) | Mappings.Cross(...)
+                      | Mappings.CustomFilter(...),
       ...
     }
   }
 */
-can.Construct.extend('GGRC.Mappings', {
+export default can.Construct.extend({
   // Convenience properties for building mappings types.
   Proxy: Proxy,
   Direct: Direct,
@@ -163,7 +163,7 @@ can.Construct.extend('GGRC.Mappings', {
     object - a string representing the object type's shortName
 
     return: a keyed object of all mappings (instances of BaseListLoader) by mapping name
-    Example: GGRC.Mappings.get_mappings_for('Program')
+    Example: Mappings.get_mappings_for('Program')
   */
   get_mappings_for: function (object) {
     let mappings = {};

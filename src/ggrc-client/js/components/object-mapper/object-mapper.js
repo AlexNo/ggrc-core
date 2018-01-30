@@ -21,6 +21,7 @@ import {
   refreshCounts,
 } from '../../plugins/utils/current-page-utils';
 import RefreshQueue from '../../models/refresh_queue';
+import Mappings from '../../models/mappers/mappings';
 
 (function (can, $) {
   'use strict';
@@ -271,7 +272,7 @@ import RefreshQueue from '../../models/refresh_queue';
             if ((!isPersonMapping && isMapped) || !isAllowed) {
               return;
             }
-            mapping = GGRC.Mappings.get_canonical_mapping(object, type);
+            mapping = Mappings.get_canonical_mapping(object, type);
             Model = CMS.Models[mapping.model_name];
             data[mapping.object_attr] = {
               href: instance.href,

@@ -4,6 +4,7 @@
 */
 
 import {confirm} from '../../plugins/utils/modals';
+import Mappings from '../../models/mappers/mappings';
 
 (function (can, $) {
   'use strict';
@@ -185,7 +186,7 @@ import {confirm} from '../../plugins/utils/modals';
                 this.scope.attributes.serialize()
               ));
             } else {
-              join_object = GGRC.Mappings.make_join_object(
+              join_object = Mappings.make_join_object(
                 this.scope.parent_instance,
                 this.scope.instance || this.scope.attributes.instance,
                 $.extend({
@@ -254,7 +255,7 @@ import {confirm} from '../../plugins/utils/modals';
           if (length == 1){
             my_data = data.arr[0];
 
-            GGRC.Mappings.make_join_object(
+            Mappings.make_join_object(
               this.scope.parent_instance,
               my_data,
               $.extend({
@@ -271,7 +272,7 @@ import {confirm} from '../../plugins/utils/modals';
             for(let i = 0; i < length-1; i++){
               my_data = data.arr[i];
 
-              GGRC.Mappings.make_join_object(
+              Mappings.make_join_object(
                 this.scope.parent_instance,
                 my_data,
                 $.extend({
@@ -282,7 +283,7 @@ import {confirm} from '../../plugins/utils/modals';
               ).save().done(function(){});
             }
             my_data = data.arr[length-1];
-            GGRC.Mappings.make_join_object(
+            Mappings.make_join_object(
               this.scope.parent_instance,
               my_data,
               $.extend({
@@ -301,7 +302,7 @@ import {confirm} from '../../plugins/utils/modals';
             join_model_class = CMS.Models[this.scope.join_model] || CMS.ModelHelpers[this.scope.join_model];
             join_object = new join_model_class(this.scope.attributes.serialize());
           } else {
-            join_object = GGRC.Mappings.make_join_object(
+            join_object = Mappings.make_join_object(
               this.scope.parent_instance,
               data,
               $.extend({

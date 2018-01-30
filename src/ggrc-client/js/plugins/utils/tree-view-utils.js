@@ -356,7 +356,7 @@ function getModelsForSubTier(modelName) {
   let selectedModels;
 
   // getMappableTypes can't be run at once,
-  // cause GGRC.Mappings is not loaded yet
+  // cause Mappings is not loaded yet
   if (modelName === 'CycleTaskGroupObjectTask' &&
   !orderedModelsForSubTier[modelName].length) {
     orderedModelsForSubTier[modelName] =

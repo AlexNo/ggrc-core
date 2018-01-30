@@ -5,6 +5,7 @@
 
 import * as TreeViewUtils from '../../../plugins/utils/tree-view-utils';
 import * as AdvancedSearch from '../../../plugins/utils/advanced-search-utils';
+import Mappings from '../../../models/mappers/mappings';
 import Component from '../advanced-search-mapping-criteria';
 
 describe('GGRC.Components.advancedSearchMappingCriteria', function () {
@@ -99,7 +100,7 @@ describe('GGRC.Components.advancedSearchMappingCriteria', function () {
   describe('mappingTypes() method', function () {
     let cmsModels;
     beforeEach(function () {
-      spyOn(GGRC.Mappings, 'get_canonical_mappings_for').and.returnValue({
+      spyOn(Mappings, 'get_canonical_mappings_for').and.returnValue({
         type1: {},
         type2: {},
         type3: {},
@@ -136,7 +137,7 @@ describe('GGRC.Components.advancedSearchMappingCriteria', function () {
 
       viewModel.mappingTypes();
 
-      expect(GGRC.Mappings.get_canonical_mappings_for)
+      expect(Mappings.get_canonical_mappings_for)
         .toHaveBeenCalledWith('testModel');
     });
 

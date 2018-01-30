@@ -5,6 +5,7 @@
 
 import Component from '../object-bulk-update';
 import * as stateUtils from '../../../plugins/utils/state-utils';
+import Mappings from '../../../models/mappers/mappings';
 
 describe('GGRC.Components.objectBulkUpdate', function () {
   let events;
@@ -30,7 +31,7 @@ describe('GGRC.Components.objectBulkUpdate', function () {
 
       spyOn(stateUtils, 'getBulkStatesForModel')
         .and.returnValue(targetStates);
-      spyOn(GGRC.Mappings, 'getMappingType')
+      spyOn(Mappings, 'getMappingType')
         .and.returnValue(mappingType);
 
       result = method({type: 'some type'}, parentViewModel)();

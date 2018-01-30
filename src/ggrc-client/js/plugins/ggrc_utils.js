@@ -4,6 +4,7 @@
  */
 
 import RefreshQueue from '../models/refresh_queue';
+import Mappings from '../models/mappers/mappings';
 import Permission from '../permission';
 
 (function ($, GGRC, moment, CMS) {
@@ -330,7 +331,7 @@ import Permission from '../permission';
      */
     getMappableTypes: function (type, options) {
       let result;
-      let canonical = GGRC.Mappings.get_canonical_mappings_for(type);
+      let canonical = Mappings.get_canonical_mappings_for(type);
       let list = GGRC.tree_view.base_widgets_by_type[type];
       let forbidden;
       let forbiddenList = {
@@ -449,9 +450,9 @@ import Permission from '../permission';
         return false;
       }
 
-      canonical = GGRC.Mappings.get_canonical_mapping_name(
+      canonical = Mappings.get_canonical_mapping_name(
         sourceType, targetType);
-      canonicalMapping = GGRC.Mappings.get_canonical_mapping(
+      canonicalMapping = Mappings.get_canonical_mapping(
         sourceType, targetType);
 
       if (canonical && canonical.indexOf('_') === 0) {

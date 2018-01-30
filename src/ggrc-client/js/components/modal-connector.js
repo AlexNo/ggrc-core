@@ -8,6 +8,7 @@ import {
   isSnapshotType,
 } from '../plugins/utils/snapshot-utils';
 import DirectListLoader from '../models/mappers/direct-list-loader';
+import Mappings from '../models/mappers/mappings';
 
 (function (can, $) {
   /*
@@ -136,7 +137,7 @@ import DirectListLoader from '../models/mappers/direct-list-loader';
         // Add pending operations
         can.each(changes, function (item) {
           let mapping = this.viewModel.mapping ||
-              GGRC.Mappings.get_canonical_mapping_name(
+              Mappings.get_canonical_mapping_name(
                 this.viewModel.instance.constructor.shortName,
                 item.what.constructor.shortName);
           if (item.how === 'add') {
@@ -168,7 +169,7 @@ import DirectListLoader from '../models/mappers/direct-list-loader';
               this.viewModel.changes);
           } else {
             mapping = this.viewModel.mapping ||
-              GGRC.Mappings.get_canonical_mapping_name(
+              Mappings.get_canonical_mapping_name(
                 this.viewModel.instance.constructor.shortName,
                 obj.constructor.shortName);
             this.viewModel.instance.mark_for_deletion(mapping, obj);
@@ -232,7 +233,7 @@ import DirectListLoader from '../models/mappers/direct-list-loader';
             .push({what: obj, how: 'add', extra: extraAttrs});
         } else {
           mapping = that.viewModel.mapping ||
-            GGRC.Mappings.get_canonical_mapping_name(
+            Mappings.get_canonical_mapping_name(
               that.viewModel.instance.constructor.shortName,
               obj.constructor.shortName);
           that.viewModel.instance.mark_for_addition(mapping, obj, extraAttrs);
@@ -253,7 +254,7 @@ import DirectListLoader from '../models/mappers/direct-list-loader';
               this.viewModel.changes);
           } else {
             mapping = this.viewModel.mapping ||
-              GGRC.Mappings.get_canonical_mapping_name(
+              Mappings.get_canonical_mapping_name(
                 this.viewModel.instance.constructor.shortName,
                 obj.constructor.shortName);
             this.viewModel.instance.mark_for_addition(mapping, obj);
@@ -282,7 +283,7 @@ import DirectListLoader from '../models/mappers/direct-list-loader';
               .push({what: obj, how: 'add', extra: extraAttrs});
           } else {
             mapping = that.viewModel.mapping ||
-              GGRC.Mappings.get_canonical_mapping_name(
+              Mappings.get_canonical_mapping_name(
                 that.viewModel.instance.constructor.shortName,
                 obj.constructor.shortName);
             that.viewModel.instance.mark_for_addition(mapping, obj, extraAttrs);

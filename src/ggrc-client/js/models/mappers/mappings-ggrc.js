@@ -4,6 +4,7 @@
 */
 
 import RefreshQueue from '../refresh_queue';
+import Mappings from './mappings';
 import {
   Proxy,
   Direct,
@@ -16,7 +17,7 @@ import {
   TypeFilter,
 } from './mapper-helpers';
 
-new GGRC.Mappings('ggrc_core', {
+new Mappings('ggrc_core', {
   base: {},
 
   // Governance

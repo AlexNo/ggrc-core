@@ -4,6 +4,7 @@
 */
 
 import Permission from '../../permission';
+import Mappings from '../../models/mappers/mappings';
 
 'use strict';
 
@@ -26,7 +27,7 @@ describe('GGRC utils allowed_to_map() method', function () {
       fakeProgram = new CMS.Models.Program({type: 'Program'});
       fakeAudit = new CMS.Models.Audit({type: 'Audit'});
 
-      spyOn(GGRC.Mappings, 'get_canonical_mapping_name')
+      spyOn(Mappings, 'get_canonical_mapping_name')
         .and.returnValue('audits');
 
       spyOn(Permission, 'is_allowed_for').and.returnValue(true);
@@ -85,7 +86,7 @@ describe('GGRC utils getMappableTypes() method', function () {
     OBJECT_TYPES.forEach(function (item) {
       canonicalMappings[item] = {};
     });
-    spyOn(GGRC.Mappings, 'get_canonical_mappings_for')
+    spyOn(Mappings, 'get_canonical_mappings_for')
       .and.returnValue(canonicalMappings);
   });
 

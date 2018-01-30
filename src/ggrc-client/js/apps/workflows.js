@@ -18,6 +18,7 @@ import {
   Search,
   TypeFilter,
 } from '../models/mappers/mapper-helpers';
+import Mappings from '../models/mappers/mappings';
 
 (function ($, CMS, GGRC) {
   let WorkflowExtension = {};
@@ -313,7 +314,7 @@ import {
         },
       };
       mappings[type].orphaned_objects = Multi([
-        GGRC.Mappings.get_mappings_for(type).orphaned_objects,
+        Mappings.get_mappings_for(type).orphaned_objects,
         mappings[type].workflows,
       ]);
 
@@ -326,7 +327,7 @@ import {
         GGRC.mustache_path + '/base_objects/approval_link.mustache'
         );
     });
-    new GGRC.Mappings('ggrc_workflows', mappings);
+    new Mappings('ggrc_workflows', mappings);
   };
 
   // Override GGRC.extra_widget_descriptors and GGRC.extra_default_widgets

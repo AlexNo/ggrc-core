@@ -9,6 +9,7 @@ import {
 } from './utils/query-api-utils';
 import RefreshQueue from '../models/refresh_queue';
 import ProxyListLoader from '../models/mappers/proxy-list-loader';
+import Mappings from '../models/mappers/mappings';
 
 (function ($) {
   'use strict';
@@ -226,7 +227,7 @@ import ProxyListLoader from '../models/mappers/proxy-list-loader';
           baseSearch.indexOf('__mappable') === 0 ||
           baseSearch.indexOf('__all') === 0
         ) {
-          searchtypes = GGRC.Mappings.get_canonical_mappings_for(
+          searchtypes = Mappings.get_canonical_mappings_for(
             this.options.parent_instance.constructor.shortName
           );
           if (baseSearch.indexOf('__mappable') === 0) {

@@ -15,6 +15,7 @@ import resolveConflict from './cacheable_conflict_resolution.js';
 import PersistentNotifier from '../plugins/persistent_notifier';
 import RefreshQueue from './refresh_queue';
 import BaseListLoader from './mappers/base-list-loader';
+import Mappings from './mappers/mappings';
 
 (function (can, GGRC, CMS) {
   let _oldAttr;
@@ -780,7 +781,7 @@ import BaseListLoader from './mappers/base-list-loader';
 
     get_mapper: function (name) {
       let mapper;
-      let mappers = GGRC.Mappings.get_mappings_for(this.shortName);
+      let mappers = Mappings.get_mappings_for(this.shortName);
       if (mappers) {
         mapper = mappers[name];
         return mapper;

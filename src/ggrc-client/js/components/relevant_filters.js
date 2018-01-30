@@ -3,6 +3,8 @@
     Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 */
 
+import Mappings from '../models/mappers/mappings';
+
 (function (can, $, GGRC) {
   GGRC.Components('relevantFilter', {
     tag: 'relevant-filter',
@@ -51,7 +53,7 @@
           });
           return _.sortBy(_.compact(models), 'model_singular');
         }
-        mappings = GGRC.Mappings.get_canonical_mappings_for(type);
+        mappings = Mappings.get_canonical_mappings_for(type);
         return _.sortBy(_.compact(_.map(_.keys(mappings), function (mapping) {
           return CMS.Models[mapping];
         })), 'model_singular');
