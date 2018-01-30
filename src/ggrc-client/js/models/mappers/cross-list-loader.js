@@ -5,7 +5,7 @@
 
 import BaseListLoader from './base-list-loader';
 
-BaseListLoader('GGRC.ListLoaders.CrossListLoader', {}, {
+export default BaseListLoader({}, {
   init: function (localMapping, remoteMapping) {
     this._super();
 

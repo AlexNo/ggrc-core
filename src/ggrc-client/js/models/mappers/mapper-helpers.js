@@ -3,6 +3,8 @@
   Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 */
 
+import CrossListLoader from './cross-list-loader';
+
 GGRC.MapperHelpers = {};
 
 GGRC.MapperHelpers.Proxy = function Proxy(
@@ -50,7 +52,7 @@ GGRC.MapperHelpers.Reify = function Reify(source) {
 };
 
 GGRC.MapperHelpers.Cross = function Cross(localMapping, remoteMapping) {
-  return new GGRC.ListLoaders.CrossListLoader(localMapping, remoteMapping);
+  return new CrossListLoader(localMapping, remoteMapping);
 };
 
 GGRC.all_local_results = function (instance) {
