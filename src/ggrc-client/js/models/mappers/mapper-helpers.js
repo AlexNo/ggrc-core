@@ -5,6 +5,7 @@
 
 import CrossListLoader from './cross-list-loader';
 import DirectListLoader from './direct-list-loader';
+import IndirectListLoader from './indirect-list-loader';
 
 GGRC.MapperHelpers = {};
 
@@ -23,7 +24,7 @@ GGRC.MapperHelpers.Direct = function Direct(
 };
 
 GGRC.MapperHelpers.Indirect = function Indirect(instModelName, joinAttr) {
-  return new GGRC.ListLoaders.IndirectListLoader(instModelName, joinAttr);
+  return new IndirectListLoader(instModelName, joinAttr);
 };
 
 GGRC.MapperHelpers.Search = function Search(queryFunction, observeTypes) {

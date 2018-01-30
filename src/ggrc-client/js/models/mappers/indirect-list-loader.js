@@ -15,7 +15,7 @@ import BaseListLoader from './base-list-loader';
  *      - not implemented:
  *        - instance.change(object_attr)
  */
-BaseListLoader('GGRC.ListLoaders.IndirectListLoader', {}, {
+export default BaseListLoader({}, {
   init: function (modelName, objectAttr) {
     this._super();
 
