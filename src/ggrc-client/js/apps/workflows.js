@@ -8,6 +8,16 @@ import {
 } from '../plugins/utils/current-page-utils';
 import InfoWidget from '../controllers/info_widget_controller';
 import ProxyListLoader from '../models/mappers/proxy-list-loader';
+import {
+  Proxy,
+  Direct,
+  Cross,
+  Multi,
+  CustomFilter,
+  Reify,
+  Search,
+  TypeFilter,
+} from '../models/mappers/mapper-helpers';
 
 (function ($, CMS, GGRC) {
   let WorkflowExtension = {};
@@ -77,15 +87,6 @@ import ProxyListLoader from '../models/mappers/proxy-list-loader';
 
   // Configure mapping extensions for ggrc_workflows
   WorkflowExtension.init_mappings = function () {
-    let Proxy = GGRC.MapperHelpers.Proxy;
-    let Direct = GGRC.MapperHelpers.Direct;
-    let Cross = GGRC.MapperHelpers.Cross;
-    let Multi = GGRC.MapperHelpers.Multi;
-    let CustomFilter = GGRC.MapperHelpers.CustomFilter;
-    let Reify = GGRC.MapperHelpers.Reify;
-    let Search = GGRC.MapperHelpers.Search;
-    let TypeFilter = GGRC.MapperHelpers.TypeFilter;
-
     // Add mappings for basic workflow objects
     let mappings = {
       TaskGroup: {
