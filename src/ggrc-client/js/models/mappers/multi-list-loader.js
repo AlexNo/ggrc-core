@@ -5,7 +5,7 @@
 
 import BaseListLoader from './base-list-loader';
 
-BaseListLoader('GGRC.ListLoaders.MultiListLoader', {}, {
+export default BaseListLoader({}, {
   init: function (sources) {
     this._super();
 

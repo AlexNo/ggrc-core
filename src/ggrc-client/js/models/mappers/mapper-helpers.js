@@ -6,6 +6,7 @@
 import CrossListLoader from './cross-list-loader';
 import DirectListLoader from './direct-list-loader';
 import IndirectListLoader from './indirect-list-loader';
+import MultiListLoader from './multi-list-loader';
 
 GGRC.MapperHelpers = {};
 
@@ -32,7 +33,7 @@ GGRC.MapperHelpers.Search = function Search(queryFunction, observeTypes) {
 };
 
 GGRC.MapperHelpers.Multi = function Multi(sources) {
-  return new GGRC.ListLoaders.MultiListLoader(sources);
+  return new MultiListLoader(sources);
 };
 
 GGRC.MapperHelpers.TypeFilter = function TypeFilter(source, modelName) {
@@ -74,7 +75,7 @@ GGRC.all_local_results = function (instance) {
     }
   });
 
-  multiLoader = new GGRC.ListLoaders.MultiListLoader(localLoaders);
+  multiLoader = new MultiListLoader(localLoaders);
   instance._all_local_results_binding = multiLoader.attach(instance);
   return instance._all_local_results_binding.refresh_stubs();
 };
