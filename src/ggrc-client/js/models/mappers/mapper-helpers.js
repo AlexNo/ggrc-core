@@ -7,13 +7,14 @@ import CrossListLoader from './cross-list-loader';
 import DirectListLoader from './direct-list-loader';
 import IndirectListLoader from './indirect-list-loader';
 import MultiListLoader from './multi-list-loader';
+import ProxyListLoader from './proxy-list-loader';
 
 GGRC.MapperHelpers = {};
 
 GGRC.MapperHelpers.Proxy = function Proxy(
   optionModelName, joinOptionAttr, joinModelName, joinObjectAttr,
   instanceJoinAttr) {
-  return new GGRC.ListLoaders.ProxyListLoader(
+  return new ProxyListLoader(
       joinModelName, joinObjectAttr, joinOptionAttr,
       instanceJoinAttr, optionModelName);
 };
@@ -70,7 +71,7 @@ GGRC.all_local_results = function (instance) {
   loaders = GGRC.Mappings.get_mappings_for(instance.constructor.shortName);
   can.each(loaders, function (loader, name) {
     if (loader instanceof DirectListLoader ||
-      loader instanceof GGRC.ListLoaders.ProxyListLoader) {
+      loader instanceof ProxyListLoader) {
       localLoaders.push(name);
     }
   });

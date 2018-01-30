@@ -7,6 +7,7 @@ import {
   initCounts,
 } from '../plugins/utils/current-page-utils';
 import InfoWidget from '../controllers/info_widget_controller';
+import ProxyListLoader from '../models/mappers/proxy-list-loader';
 
 (function ($, CMS, GGRC) {
   let WorkflowExtension = {};
@@ -289,7 +290,7 @@ import InfoWidget from '../controllers/info_widget_controller';
       }
       mappings[type] = {
         task_groups:
-          new GGRC.ListLoaders.ProxyListLoader(
+          new ProxyListLoader(
             'TaskGroupObject',
             'object',
             'task_group',

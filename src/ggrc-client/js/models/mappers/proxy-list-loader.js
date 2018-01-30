@@ -16,7 +16,7 @@ import BaseListLoader from './base-list-loader';
  *        - join_instance.change(object_attr)
  *        - join_instance.change(option_attr)
  */
-BaseListLoader('GGRC.ListLoaders.ProxyListLoader', {}, {
+export default BaseListLoader({}, {
   init: function (modelName, objectAttr, optionAttr, objectJoinAttr,
                   optionModelName) {
     this._super();

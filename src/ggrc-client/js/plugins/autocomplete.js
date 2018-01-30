@@ -8,6 +8,7 @@ import {
   makeRequest,
 } from './utils/query-api-utils';
 import RefreshQueue from '../models/refresh_queue';
+import ProxyListLoader from '../models/mappers/proxy-list-loader';
 
 (function ($) {
   'use strict';
@@ -230,7 +231,7 @@ import RefreshQueue from '../models/refresh_queue';
           );
           if (baseSearch.indexOf('__mappable') === 0) {
             searchtypes = can.map(searchtypes, function (mapping) {
-              return (mapping instanceof GGRC.ListLoaders.ProxyListLoader) ?
+              return (mapping instanceof ProxyListLoader) ?
                      mapping : undefined;
             });
           }

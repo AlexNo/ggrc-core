@@ -3,6 +3,8 @@
   Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 */
 
+import ProxyListLoader from './proxy-list-loader';
+
 let Proxy = GGRC.MapperHelpers.Proxy;
 let Direct = GGRC.MapperHelpers.Direct;
 let Indirect = GGRC.MapperHelpers.Indirect;
@@ -240,7 +242,7 @@ can.Construct.extend('GGRC.Mappings', {
   join_model_name_for: function (modelNameA, modelNameB) {
     let joinDescriptor = this.get_canonical_mapping(modelNameA, modelNameB);
     let result;
-    if (joinDescriptor instanceof GGRC.ListLoaders.ProxyListLoader) {
+    if (joinDescriptor instanceof ProxyListLoader) {
       result = joinDescriptor.model_name;
     } else {
       result = null;
