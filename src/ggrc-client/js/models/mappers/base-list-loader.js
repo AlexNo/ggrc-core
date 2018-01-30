@@ -4,10 +4,11 @@
  */
 
 import RefreshQueue from '../refresh_queue';
+import ListBinding from './list-binding';
 
 export default can.Construct({
   binding_factory: function (instance, loader) {
-    return new GGRC.ListLoaders.ListBinding(instance, loader);
+    return new ListBinding(instance, loader);
   },
 }, {
   init: function () {

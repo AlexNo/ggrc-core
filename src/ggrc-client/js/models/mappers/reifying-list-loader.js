@@ -5,12 +5,13 @@
 
 import RefreshQueue from '../refresh_queue';
 import BaseListLoader from './base-list-loader';
+import ListBinding from './list-binding';
 
 export default BaseListLoader({}, {
   init: function (source) {
     this._super();
 
-    if (source instanceof GGRC.ListLoaders.ListBinding)
+    if (source instanceof ListBinding)
       this.source_binding = source;
     else
       this.source = source;

@@ -7,6 +7,7 @@ import RefreshQueue from '../../js/models/refresh_queue';
 import BaseListLoader from '../../js/models/mappers/base-list-loader';
 import ReifyingListLoader from '../../js/models/mappers/reifying-list-loader';
 import CustomFilteredListLoader from '../../js/models/mappers/custom-filtered-list-loader';
+import ListBinding from '../../js/models/mappers/list-binding';
 
 describe("mappers", function() {
 
@@ -23,13 +24,13 @@ describe("mappers", function() {
     describe("#init", function() {
 
       it("sets instance and loader to supplied arguments", function() {
-        let lb = new LL.ListBinding(1, 2);
+        let lb = new ListBinding(1, 2);
         expect(lb.instance).toBe(1);
         expect(lb.loader).toBe(2);
       });
 
       it("creates a new observable list", function() {
-        expect(new LL.ListBinding().list).toEqual(jasmine.any(can.List));
+        expect(new ListBinding().list).toEqual(jasmine.any(can.List));
       });
 
     });
@@ -38,7 +39,7 @@ describe("mappers", function() {
 
       it("calls refresh_stubs on its loader", function() {
         let loader = jasmine.createSpyObj('loader', ['refresh_stubs']);
-        let binding = new LL.ListBinding({}, loader);
+        let binding = new ListBinding({}, loader);
         binding.refresh_stubs();
         expect(loader.refresh_stubs).toHaveBeenCalledWith(binding);
       });
@@ -49,7 +50,7 @@ describe("mappers", function() {
 
       it("calls refresh_instances on its loader", function() {
         let loader = jasmine.createSpyObj('loader', ['refresh_instances']);
-        let binding = new LL.ListBinding({}, loader);
+        let binding = new ListBinding({}, loader);
         binding.refresh_instances();
         expect(loader.refresh_instances).toHaveBeenCalledWith(binding, undefined);
       });
@@ -60,7 +61,7 @@ describe("mappers", function() {
 
       let binding;
       beforeEach(function() {
-        binding = new LL.ListBinding({}, {});
+        binding = new ListBinding({}, {});
       });
 
       it("calls refresh_stubs on itself", function() {
@@ -107,7 +108,7 @@ describe("mappers", function() {
         loader.refresh_instances.and.returnValue($.when());
         loader.attach.and.returnValue(other_binding);
         spyOn(ReifyingListLoader, "newInstance").and.returnValue(loader);
-        binding = new LL.ListBinding({}, {});
+        binding = new ListBinding({}, {});
         spyOn(binding, "refresh_instances").and.returnValue($.when());
       });
 
@@ -144,7 +145,7 @@ describe("mappers", function() {
       it("enqueues the instance in a triggered RefreshQueue", function() {
         spyOn(RefreshQueue.prototype, "enqueue");
         spyOn(RefreshQueue.prototype, "trigger");
-        new LL.ListBinding(1, {}).refresh_instance();
+        new ListBinding(1, {}).refresh_instance();
         expect(RefreshQueue.prototype.enqueue).toHaveBeenCalledWith(1);
         expect(RefreshQueue.prototype.trigger).toHaveBeenCalledWith();
       });
@@ -153,7 +154,7 @@ describe("mappers", function() {
         let dfd = $.when();
         spyOn(RefreshQueue.prototype, "enqueue");
         spyOn(RefreshQueue.prototype, "trigger").and.returnValue(dfd);
-        expect(new LL.ListBinding(1, {}).refresh_instance()).toBe(dfd);
+        expect(new ListBinding(1, {}).refresh_instance()).toBe(dfd);
       });
 
     });
@@ -710,7 +711,7 @@ describe("mappers", function() {
       });
 
       it("sets source_binding property if binding is a ListBinding", function() {
-        let binding = new LL.ListBinding(),
+        let binding = new ListBinding(),
             rll = new ReifyingListLoader(binding);
         expect(rll.source_binding).toBe(binding);
         expect(rll.binding).not.toBeDefined();
@@ -752,8 +753,8 @@ describe("mappers", function() {
       let source_binding;
 
       beforeEach(function () {
-        source_binding = new LL.ListBinding();
-        binding = new LL.ListBinding();
+        source_binding = new ListBinding();
+        binding = new ListBinding();
       });
       it("sets up source_binding on the binding from the ReifyingListLoader's source_binding, if it exists", function() {
         rll = new ReifyingListLoader(source_binding);
@@ -777,8 +778,8 @@ describe("mappers", function() {
     describe("listeners", function() {
       let rll, binding, source_binding;
       beforeEach(function() {
-        source_binding = new LL.ListBinding();
-        binding = new LL.ListBinding();
+        source_binding = new ListBinding();
+        binding = new ListBinding();
         rll = new ReifyingListLoader(source_binding);
       });
 
@@ -811,8 +812,8 @@ describe("mappers", function() {
 
     let cfll, binding;
     beforeEach(function() {
-      binding = new LL.ListBinding();
-      binding.source_binding = new LL.ListBinding();
+      binding = new ListBinding();
+      binding.source_binding = new ListBinding();
       cfll = new CustomFilteredListLoader(binding, jasmine.createSpy());
     });
 
@@ -844,8 +845,8 @@ describe("mappers", function() {
       let cfll, binding, source_binding, new_result;
       beforeEach(function() {
         new_result = new LL.MappingResult({id : 1}, []);
-        source_binding = new LL.ListBinding();
-        binding = new LL.ListBinding();
+        source_binding = new ListBinding();
+        binding = new ListBinding();
         cfll = new CustomFilteredListLoader(source_binding, jasmine.createSpy("filter_fn"));
         spyOn(binding, "refresh_instances").and.returnValue($.when());
         // Items are sent through a refresh queue before continuing.

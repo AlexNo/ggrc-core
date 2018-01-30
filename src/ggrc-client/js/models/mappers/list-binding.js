@@ -6,9 +6,9 @@
 import RefreshQueue from '../refresh_queue';
 import ReifyingListLoader from './reifying-list-loader';
 
-/*  GGRC.ListLoaders.ListBinding
+/*  ListBinding
  */
-can.Construct('GGRC.ListLoaders.ListBinding', {}, {
+export default can.Construct({}, {
   init: function (instance, loader) {
     this.instance = instance;
     this.loader = loader;
