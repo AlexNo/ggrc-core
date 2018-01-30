@@ -4,8 +4,9 @@
 */
 
 import RefreshQueue from '../refresh_queue';
+import BaseListLoader from './base-list-loader';
 
-GGRC.ListLoaders.BaseListLoader('GGRC.ListLoaders.ReifyingListLoader', {}, {
+BaseListLoader('GGRC.ListLoaders.ReifyingListLoader', {}, {
   init: function (source) {
     this._super();
 

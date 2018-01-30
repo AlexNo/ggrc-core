@@ -3,7 +3,9 @@
  Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
  */
 
-GGRC.ListLoaders.BaseListLoader('GGRC.ListLoaders.MultiListLoader', {}, {
+import BaseListLoader from './base-list-loader';
+
+BaseListLoader('GGRC.ListLoaders.MultiListLoader', {}, {
   init: function (sources) {
     this._super();
 

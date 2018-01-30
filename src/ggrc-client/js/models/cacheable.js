@@ -14,6 +14,7 @@ import {
 import resolveConflict from './cacheable_conflict_resolution.js';
 import PersistentNotifier from '../plugins/persistent_notifier';
 import RefreshQueue from './refresh_queue';
+import BaseListLoader from './mappers/base-list-loader';
 
 (function (can, GGRC, CMS) {
   let _oldAttr;
@@ -999,7 +1000,7 @@ import RefreshQueue from './refresh_queue';
           if (!mapping) {
             return false;
           }
-        } else if (!(mapper instanceof GGRC.ListLoaders.BaseListLoader)) {
+        } else if (!(mapper instanceof BaseListLoader)) {
           return false;
         }
       }
@@ -1024,7 +1025,7 @@ import RefreshQueue from './refresh_queue';
             console.debug('No such mapper:  ' + this.constructor.shortName + '.' + mapper);
           else
           binding = mapping.attach(this);
-        } else if (mapper instanceof GGRC.ListLoaders.BaseListLoader) {
+        } else if (mapper instanceof BaseListLoader) {
         // Loader directly provided, so just attach
           binding = mapper.attach(this);
         } else {

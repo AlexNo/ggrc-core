@@ -4,6 +4,7 @@
 */
 
 import RefreshQueue from '../../js/models/refresh_queue';
+import BaseListLoader from '../../js/models/mappers/base-list-loader';
 
 describe("mappers", function() {
 
@@ -403,11 +404,11 @@ describe("mappers", function() {
 
   });
 
-  describe("GGRC.ListLoaders.BaseListLoader", function() {
+  describe("BaseListLoader", function() {
 
     let ll;
     beforeEach(function() {
-      ll = new GGRC.ListLoaders.BaseListLoader();
+      ll = new BaseListLoader();
       //init_listeners is abstract -- called by base init but not implemented in base.
       ll.init_listeners = jasmine.createSpy();
     });
@@ -415,15 +416,15 @@ describe("mappers", function() {
     describe("#attach", function() {
 
       it("calls the binding factory for the type", function() {
-        spyOn(GGRC.ListLoaders.BaseListLoader, "binding_factory");
+        spyOn(BaseListLoader, "binding_factory");
 
         ll.attach("instance");
-        expect(GGRC.ListLoaders.BaseListLoader.binding_factory).toHaveBeenCalledWith("instance", ll);
+        expect(BaseListLoader.binding_factory).toHaveBeenCalledWith("instance", ll);
       });
 
       it("inits the listeners", function() {
         let fake_binding = {};
-        spyOn(GGRC.ListLoaders.BaseListLoader, "binding_factory").and.returnValue(fake_binding);
+        spyOn(BaseListLoader, "binding_factory").and.returnValue(fake_binding);
 
         ll.attach("instance");
         expect(ll.init_listeners).toHaveBeenCalledWith(fake_binding);

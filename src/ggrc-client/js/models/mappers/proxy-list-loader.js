@@ -4,6 +4,7 @@
  */
 
 import RefreshQueue from '../refresh_queue';
+import BaseListLoader from './base-list-loader';
 
 /*  ProxyListLoader
  *  - handles relationships across join tables
@@ -15,7 +16,7 @@ import RefreshQueue from '../refresh_queue';
  *        - join_instance.change(object_attr)
  *        - join_instance.change(option_attr)
  */
-GGRC.ListLoaders.BaseListLoader('GGRC.ListLoaders.ProxyListLoader', {}, {
+BaseListLoader('GGRC.ListLoaders.ProxyListLoader', {}, {
   init: function (modelName, objectAttr, optionAttr, objectJoinAttr,
                   optionModelName) {
     this._super();

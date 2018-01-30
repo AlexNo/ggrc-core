@@ -158,7 +158,7 @@ can.Construct.extend('GGRC.Mappings', {
     return all mappings from all modules for an object type.
     object - a string representing the object type's shortName
 
-    return: a keyed object of all mappings (instances of GGRC.ListLoaders.BaseListLoader) by mapping name
+    return: a keyed object of all mappings (instances of BaseListLoader) by mapping name
     Example: GGRC.Mappings.get_mappings_for('Program')
   */
   get_mappings_for: function (object) {
@@ -179,7 +179,7 @@ can.Construct.extend('GGRC.Mappings', {
     object - the string type (shortName) of the "from" object's class
     option - the string type (shortName) of the "to" object's class
 
-    return: an instance of GGRC.ListLoaders.BaseListLoader (mappings are implemented as ListLoaders)
+    return: an instance of BaseListLoader (mappings are implemented as ListLoaders)
   */
   get_canonical_mapping: function (object, option) {
     let mapping = null;
@@ -199,7 +199,7 @@ can.Construct.extend('GGRC.Mappings', {
     object - the string type (shortName) of the "from" object's class
     option - the string type (shortName) of the "to" object's class
 
-    return: an instance of GGRC.ListLoaders.BaseListLoader (mappings are implemented as ListLoaders)
+    return: an instance of BaseListLoader (mappings are implemented as ListLoaders)
   */
   get_canonical_mapping_name: function (object, option) {
     let mappingName = null;
@@ -216,7 +216,7 @@ can.Construct.extend('GGRC.Mappings', {
     return all canonical mappings (suitable for joining) from all modules for an object type.
     object - a string representing the object type's shortName
 
-    return: a keyed object of all mappings (instances of GGRC.ListLoaders.BaseListLoader) by option type
+    return: a keyed object of all mappings (instances of BaseListLoader) by option type
   */
   get_canonical_mappings_for: function (object) {
     let mappings = {};

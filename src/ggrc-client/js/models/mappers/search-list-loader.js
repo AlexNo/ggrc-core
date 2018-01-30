@@ -3,6 +3,8 @@
   Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 */
 
+import BaseListLoader from './base-list-loader';
+
 /*  SearchListLoader
  *  - handles search relationships
  *
@@ -12,7 +14,7 @@
  *      - not implemented:
  *        - instance.change(object_attr)
  */
-GGRC.ListLoaders.BaseListLoader('GGRC.ListLoaders.SearchListLoader', {}, {
+BaseListLoader('GGRC.ListLoaders.SearchListLoader', {}, {
   init: function (queryFunction, observeTypes) {
     this._super();
     this.observe_types = observeTypes && observeTypes.split(',');

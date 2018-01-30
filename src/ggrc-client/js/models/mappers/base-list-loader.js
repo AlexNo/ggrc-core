@@ -5,7 +5,7 @@
 
 import RefreshQueue from '../refresh_queue';
 
-can.Construct('GGRC.ListLoaders.BaseListLoader', {
+export default can.Construct({
   binding_factory: function (instance, loader) {
     return new GGRC.ListLoaders.ListBinding(instance, loader);
   },

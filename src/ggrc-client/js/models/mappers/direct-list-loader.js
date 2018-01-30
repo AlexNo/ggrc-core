@@ -4,6 +4,7 @@
  */
 
 import RefreshQueue from '../refresh_queue';
+import BaseListLoader from './base-list-loader';
 
 /*  DirectListLoader
  *  - handles direct relationships / one-to-many relationships
@@ -14,7 +15,7 @@ import RefreshQueue from '../refresh_queue';
  *      - not implemented:
  *        - instance.change(object_attr)
  */
-GGRC.ListLoaders.BaseListLoader('GGRC.ListLoaders.DirectListLoader', {}, {
+BaseListLoader('GGRC.ListLoaders.DirectListLoader', {}, {
   init: function (modelName, objectAttr, objectJoinAttr) {
     this._super();
 

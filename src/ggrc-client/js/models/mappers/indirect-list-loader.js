@@ -3,6 +3,8 @@
  Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
  */
 
+import BaseListLoader from './base-list-loader';
+
 /*  IndirectListLoader
  *  - handles indirect relationships
  *  (zero-to-many, no local join but has a direct mapping in another object)
@@ -13,7 +15,7 @@
  *      - not implemented:
  *        - instance.change(object_attr)
  */
-GGRC.ListLoaders.BaseListLoader('GGRC.ListLoaders.IndirectListLoader', {}, {
+BaseListLoader('GGRC.ListLoaders.IndirectListLoader', {}, {
   init: function (modelName, objectAttr) {
     this._super();
 
