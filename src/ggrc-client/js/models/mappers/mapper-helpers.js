@@ -9,6 +9,7 @@ import IndirectListLoader from './indirect-list-loader';
 import MultiListLoader from './multi-list-loader';
 import ProxyListLoader from './proxy-list-loader';
 import ReifyingListLoader from './reifying-list-loader';
+import SearchListLoader from './search-list-loader';
 
 GGRC.MapperHelpers = {};
 
@@ -31,7 +32,7 @@ GGRC.MapperHelpers.Indirect = function Indirect(instModelName, joinAttr) {
 };
 
 GGRC.MapperHelpers.Search = function Search(queryFunction, observeTypes) {
-  return new GGRC.ListLoaders.SearchListLoader(queryFunction, observeTypes);
+  return new SearchListLoader(queryFunction, observeTypes);
 };
 
 GGRC.MapperHelpers.Multi = function Multi(sources) {

@@ -14,7 +14,7 @@ import BaseListLoader from './base-list-loader';
  *      - not implemented:
  *        - instance.change(object_attr)
  */
-BaseListLoader('GGRC.ListLoaders.SearchListLoader', {}, {
+export default BaseListLoader({}, {
   init: function (queryFunction, observeTypes) {
     this._super();
     this.observe_types = observeTypes && observeTypes.split(',');
