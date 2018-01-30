@@ -11,6 +11,7 @@ import ProxyListLoader from './proxy-list-loader';
 import ReifyingListLoader from './reifying-list-loader';
 import SearchListLoader from './search-list-loader';
 import CustomFilteredListLoader from './custom-filtered-list-loader';
+import TypeFilteredListLoader from './type-filtered-list-loader';
 
 GGRC.MapperHelpers = {};
 
@@ -41,7 +42,7 @@ GGRC.MapperHelpers.Multi = function Multi(sources) {
 };
 
 GGRC.MapperHelpers.TypeFilter = function TypeFilter(source, modelName) {
-  return new GGRC.ListLoaders.TypeFilteredListLoader(source, [modelName]);
+  return TypeFilteredListLoader(source, [modelName]);
 };
 
 GGRC.MapperHelpers.AttrFilter = function AttrFilter(source, filterName,

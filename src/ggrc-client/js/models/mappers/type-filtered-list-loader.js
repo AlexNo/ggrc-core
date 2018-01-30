@@ -5,8 +5,8 @@
 
 import StubFilteredListLoader from './stub-filtered-list-loader';
 
-StubFilteredListLoader(
-  'GGRC.ListLoaders.TypeFilteredListLoader', {}, {
+export default StubFilteredListLoader(
+  {}, {
     init: function (source, modelNames) {
       let filterFn = function (result) {
         let i;
