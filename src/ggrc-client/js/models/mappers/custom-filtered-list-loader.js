@@ -4,6 +4,7 @@
  */
 
 import RefreshQueue from '../refresh_queue';
+import StubFilteredListLoader from './stub-filtered-list-loader';
 
 /*
  CustomFilteredListLoader allows any sort of filter to be applied on instances
@@ -17,7 +18,7 @@ import RefreshQueue from '../refresh_queue';
 
  Rejected Deferreds are treated as false.
  */
-GGRC.ListLoaders.StubFilteredListLoader(
+StubFilteredListLoader(
   'GGRC.ListLoaders.CustomFilteredListLoader', {}, {
     process_result: function (binding, result, newResult, include) {
       let self = this;

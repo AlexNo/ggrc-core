@@ -5,7 +5,7 @@
 
 import BaseListLoader from './base-list-loader';
 
-BaseListLoader('GGRC.ListLoaders.StubFilteredListLoader', {},
+export default BaseListLoader({},
   {
     init: function (source, filterFn) {
       this._super();

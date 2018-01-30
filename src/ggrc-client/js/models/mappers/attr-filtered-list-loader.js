@@ -3,7 +3,9 @@
  Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
  */
 
-GGRC.ListLoaders.StubFilteredListLoader(
+import StubFilteredListLoader from './stub-filtered-list-loader';
+
+StubFilteredListLoader(
   'GGRC.ListLoaders.AttrFilteredListLoader', {}, {
     init: function (source, prop, value, type) {
       var filterFn = function (binding) {
