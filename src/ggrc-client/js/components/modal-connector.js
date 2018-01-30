@@ -7,6 +7,7 @@ import {
   toObject,
   isSnapshotType,
 } from '../plugins/utils/snapshot-utils';
+import DirectListLoader from '../models/mappers/direct-list-loader';
 
 (function (can, $) {
   /*
@@ -220,7 +221,7 @@ import {
         ev.stopPropagation();
 
         extraAttrs[binding.loader.object_attr] = this.viewModel.instance;
-        if (binding.loader instanceof GGRC.ListLoaders.DirectListLoader) {
+        if (binding.loader instanceof DirectListLoader) {
           obj = new CMS.Models[binding.loader.model_name](extraAttrs);
         } else {
           obj = new CMS.Models[binding.loader.option_model_name](extraAttrs);

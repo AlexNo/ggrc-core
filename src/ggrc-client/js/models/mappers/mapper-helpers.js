@@ -4,6 +4,7 @@
 */
 
 import CrossListLoader from './cross-list-loader';
+import DirectListLoader from './direct-list-loader';
 
 GGRC.MapperHelpers = {};
 
@@ -17,7 +18,7 @@ GGRC.MapperHelpers.Proxy = function Proxy(
 
 GGRC.MapperHelpers.Direct = function Direct(
     optionModelName, instanceJoinAttr, remoteJoinAttr) {
-  return new GGRC.ListLoaders.DirectListLoader(
+  return new DirectListLoader(
     optionModelName, instanceJoinAttr, remoteJoinAttr);
 };
 
@@ -66,7 +67,7 @@ GGRC.all_local_results = function (instance) {
 
   loaders = GGRC.Mappings.get_mappings_for(instance.constructor.shortName);
   can.each(loaders, function (loader, name) {
-    if (loader instanceof GGRC.ListLoaders.DirectListLoader ||
+    if (loader instanceof DirectListLoader ||
       loader instanceof GGRC.ListLoaders.ProxyListLoader) {
       localLoaders.push(name);
     }
