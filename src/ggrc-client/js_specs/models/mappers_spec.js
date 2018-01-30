@@ -6,6 +6,7 @@
 import RefreshQueue from '../../js/models/refresh_queue';
 import BaseListLoader from '../../js/models/mappers/base-list-loader';
 import ReifyingListLoader from '../../js/models/mappers/reifying-list-loader';
+import CustomFilteredListLoader from '../../js/models/mappers/custom-filtered-list-loader';
 
 describe("mappers", function() {
 
@@ -806,13 +807,13 @@ describe("mappers", function() {
     });
   });
 
-  describe("GGRC.ListLoaders.CustomFilteredListLoader", function() {
+  describe("CustomFilteredListLoader", function() {
 
     let cfll, binding;
     beforeEach(function() {
       binding = new LL.ListBinding();
       binding.source_binding = new LL.ListBinding();
-      cfll = new LL.CustomFilteredListLoader(binding, jasmine.createSpy());
+      cfll = new CustomFilteredListLoader(binding, jasmine.createSpy());
     });
 
     describe("_refresh_stubs", function() {
@@ -845,7 +846,7 @@ describe("mappers", function() {
         new_result = new LL.MappingResult({id : 1}, []);
         source_binding = new LL.ListBinding();
         binding = new LL.ListBinding();
-        cfll = new LL.CustomFilteredListLoader(source_binding, jasmine.createSpy("filter_fn"));
+        cfll = new CustomFilteredListLoader(source_binding, jasmine.createSpy("filter_fn"));
         spyOn(binding, "refresh_instances").and.returnValue($.when());
         // Items are sent through a refresh queue before continuing.
         spyOn(RefreshQueue.prototype, "trigger").and.returnValue($.when([new_result.instance]));

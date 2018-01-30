@@ -18,8 +18,8 @@ import StubFilteredListLoader from './stub-filtered-list-loader';
 
  Rejected Deferreds are treated as false.
  */
-StubFilteredListLoader(
-  'GGRC.ListLoaders.CustomFilteredListLoader', {}, {
+export default StubFilteredListLoader(
+  {}, {
     process_result: function (binding, result, newResult, include) {
       let self = this;
       if (include) {

@@ -10,6 +10,7 @@ import MultiListLoader from './multi-list-loader';
 import ProxyListLoader from './proxy-list-loader';
 import ReifyingListLoader from './reifying-list-loader';
 import SearchListLoader from './search-list-loader';
+import CustomFilteredListLoader from './custom-filtered-list-loader';
 
 GGRC.MapperHelpers = {};
 
@@ -50,7 +51,7 @@ GGRC.MapperHelpers.AttrFilter = function AttrFilter(source, filterName,
 };
 
 GGRC.MapperHelpers.CustomFilter = function CustomFilter(source, filterFn) {
-  return new GGRC.ListLoaders.CustomFilteredListLoader(source, filterFn);
+  return new CustomFilteredListLoader(source, filterFn);
 };
 
 GGRC.MapperHelpers.Reify = function Reify(source) {
