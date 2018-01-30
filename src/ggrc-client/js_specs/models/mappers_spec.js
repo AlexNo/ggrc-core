@@ -5,6 +5,7 @@
 
 import RefreshQueue from '../../js/models/refresh_queue';
 import BaseListLoader from '../../js/models/mappers/base-list-loader';
+import ReifyingListLoader from '../../js/models/mappers/reifying-list-loader';
 
 describe("mappers", function() {
 
@@ -104,14 +105,14 @@ describe("mappers", function() {
         loader = jasmine.createSpyObj('loader', ['attach', 'refresh_instances']);
         loader.refresh_instances.and.returnValue($.when());
         loader.attach.and.returnValue(other_binding);
-        spyOn(LL.ReifyingListLoader, "newInstance").and.returnValue(loader);
+        spyOn(ReifyingListLoader, "newInstance").and.returnValue(loader);
         binding = new LL.ListBinding({}, {});
         spyOn(binding, "refresh_instances").and.returnValue($.when());
       });
 
       it("attaches its instance to a new ReifyingListLoader", function() {
         binding.refresh_list();
-        expect(LL.ReifyingListLoader.newInstance).toHaveBeenCalledWith(binding);
+        expect(ReifyingListLoader.newInstance).toHaveBeenCalledWith(binding);
         expect(loader.attach).toHaveBeenCalledWith(binding.instance);
       });
 
@@ -700,7 +701,7 @@ describe("mappers", function() {
 
   });
 
-  describe("GGRC.ListLoaders.ReifyingListLoader", function() {
+  describe("ReifyingListLoader", function() {
 
     describe("#init", function() {
       beforeEach(function() {
@@ -709,14 +710,14 @@ describe("mappers", function() {
 
       it("sets source_binding property if binding is a ListBinding", function() {
         let binding = new LL.ListBinding(),
-            rll = new LL.ReifyingListLoader(binding);
+            rll = new ReifyingListLoader(binding);
         expect(rll.source_binding).toBe(binding);
         expect(rll.binding).not.toBeDefined();
       });
 
       it("sets source property if binding is not a ListBinding", function() {
         let binding = {},
-            rll = new LL.ReifyingListLoader(binding);
+            rll = new ReifyingListLoader(binding);
         expect(rll.source).toBe(binding);
         expect(rll.source_binding).not.toBeDefined();
       });
@@ -731,7 +732,7 @@ describe("mappers", function() {
       });
 
       it('makes a new binding referencing the instance and old mappings', function () {
-        let rll = new LL.ReifyingListLoader();
+        let rll = new ReifyingListLoader();
         let binding = {};
         let result = rll.make_result({testField: 1}, []);
         spyOn(rll, 'insert_results');
@@ -754,7 +755,7 @@ describe("mappers", function() {
         binding = new LL.ListBinding();
       });
       it("sets up source_binding on the binding from the ReifyingListLoader's source_binding, if it exists", function() {
-        rll = new LL.ReifyingListLoader(source_binding);
+        rll = new ReifyingListLoader(source_binding);
         spyOn(rll, "insert_from_source_binding");
         rll.init_listeners(binding);
         expect(binding.source_binding).toBe(source_binding);
@@ -762,7 +763,7 @@ describe("mappers", function() {
       });
 
       it("sets up source_binding from the binding via get_binding, if the source_binding property does not exist", function() {
-        rll = new LL.ReifyingListLoader("dummy_binding");
+        rll = new ReifyingListLoader("dummy_binding");
         spyOn(rll, "insert_from_source_binding");
         binding = { instance : { "get_binding" : function() { return source_binding; }}};
         rll.init_listeners(binding);
@@ -777,7 +778,7 @@ describe("mappers", function() {
       beforeEach(function() {
         source_binding = new LL.ListBinding();
         binding = new LL.ListBinding();
-        rll = new LL.ReifyingListLoader(source_binding);
+        rll = new ReifyingListLoader(source_binding);
       });
 
       describe("source_binding.list add", function() {

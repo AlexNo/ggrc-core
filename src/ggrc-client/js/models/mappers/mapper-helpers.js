@@ -8,6 +8,7 @@ import DirectListLoader from './direct-list-loader';
 import IndirectListLoader from './indirect-list-loader';
 import MultiListLoader from './multi-list-loader';
 import ProxyListLoader from './proxy-list-loader';
+import ReifyingListLoader from './reifying-list-loader';
 
 GGRC.MapperHelpers = {};
 
@@ -52,7 +53,7 @@ GGRC.MapperHelpers.CustomFilter = function CustomFilter(source, filterFn) {
 };
 
 GGRC.MapperHelpers.Reify = function Reify(source) {
-  return new GGRC.ListLoaders.ReifyingListLoader(source);
+  return new ReifyingListLoader(source);
 };
 
 GGRC.MapperHelpers.Cross = function Cross(localMapping, remoteMapping) {

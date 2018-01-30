@@ -4,6 +4,7 @@
  */
 
 import RefreshQueue from '../refresh_queue';
+import ReifyingListLoader from './reifying-list-loader';
 
 /*  GGRC.ListLoaders.ListBinding
  */
@@ -41,7 +42,7 @@ can.Construct('GGRC.ListLoaders.ListBinding', {}, {
   //  - Returns a list which will *only* ever contain fully loaded / reified
   //    instances
   refresh_list: function () {
-    let loader = new GGRC.ListLoaders.ReifyingListLoader(this);
+    let loader = new ReifyingListLoader(this);
     let binding = loader.attach(this.instance);
     let self = this;
 
