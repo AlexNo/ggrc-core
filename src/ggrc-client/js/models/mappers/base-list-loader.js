@@ -4,10 +4,9 @@
  */
 
 import RefreshQueue from '../refresh_queue';
-import ListBinding from './list-binding';
 import MappingResult from './mapping-result';
 
-export default can.Construct({
+const BaseListLoader = can.Construct({
   binding_factory: function (instance, loader) {
     return new ListBinding(instance, loader);
   },
@@ -228,3 +227,108 @@ export default can.Construct({
       });
   },
 });
+
+/*
+ListBinding
+ */
+export const ListBinding = can.Construct({}, {
+  init: function (instance, loader) {
+    this.instance = instance;
+    this.loader = loader;
+
+    this.list = new can.Observe.List();
+  },
+
+  refresh_stubs: function () {
+    return this.loader.refresh_stubs(this);
+  },
+
+  refresh_instances: function (force) {
+    return this.loader.refresh_instances(this, force);
+  },
+
+  //  `refresh_count`
+  //  - Returns a `can.compute`, which in turn returns the length of
+  //    `this.list`
+  //  - Attempts to do the minimal work (e.g., loading only stubs, not full
+  //    instances) to return an accurate length
+  refresh_count: function () {
+    let self = this;
+    return this.refresh_stubs().then(function () {
+      return can.compute(function () {
+        return self.list.attr('length');
+      });
+    });
+  },
+
+  //  `refresh_list`
+  //  - Returns a list which will *only* ever contain fully loaded / reified
+  //    instances
+  refresh_list: function () {
+    let loader = new ReifyingListLoader(this);
+    let binding = loader.attach(this.instance);
+    let self = this;
+
+    binding.name = this.name + '_instances';
+    //  FIXME: `refresh_instances` should not need to be called twice, but
+    //  it fixes pre-mature resolution of mapping deferreds in some cases
+    return binding.refresh_instances(this).then(function () {
+      return self.refresh_instances();
+    });
+  },
+
+  refresh_instance: function () {
+    let refreshQueue = new RefreshQueue();
+    refreshQueue.enqueue(this.instance);
+    return refreshQueue.trigger();
+  },
+});
+
+export const ReifyingListLoader = BaseListLoader({}, {
+  init: function (source) {
+    this._super();
+
+    if (source instanceof ListBinding)
+      this.source_binding = source;
+    else
+      this.source = source;
+  },
+  insert_from_source_binding: function (binding, results) {
+    let self = this;
+    let refreshQueue = new RefreshQueue();
+    let newResults = [];
+
+    can.each(results, function (result) {
+      refreshQueue.enqueue(result.instance);
+      newResults.push(self.make_result(result.instance, [result], binding));
+    });
+    refreshQueue.trigger().then(function () {
+      self.insert_results(binding, newResults);
+    });
+  },
+  init_listeners: function (binding) {
+    let self = this;
+
+    if (this.source_binding)
+      binding.source_binding = this.source_binding;
+    else
+      binding.source_binding = binding.instance.get_binding(this.source);
+
+    this.insert_from_source_binding(binding, binding.source_binding.list, 0);
+
+    binding.source_binding.list.bind('add', function (ev, results, index) {
+      self.insert_from_source_binding(binding, results, index);
+    });
+
+    binding.source_binding.list.bind('remove', function (ev, results, index) {
+      can.each(results, function (result) {
+        self.remove_instance(binding, result.instance, result);
+      });
+    });
+  },
+  _refresh_stubs: function (binding) {
+    return binding.source_binding.refresh_stubs(binding);
+  },
+});
+
+export default BaseListLoader;

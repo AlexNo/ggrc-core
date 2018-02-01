@@ -4,10 +4,11 @@
 */
 
 import RefreshQueue from '../../js/models/refresh_queue';
-import BaseListLoader from '../../js/models/mappers/base-list-loader';
-import ReifyingListLoader from '../../js/models/mappers/reifying-list-loader';
+import BaseListLoader, {
+  ReifyingListLoader,
+  ListBinding,
+} from '../../js/models/mappers/base-list-loader';
 import CustomFilteredListLoader from '../../js/models/mappers/custom-filtered-list-loader';
-import ListBinding from '../../js/models/mappers/list-binding';
 import MappingResult from '../../js/models/mappers/mapping-result';
 
 describe("mappers", function() {
