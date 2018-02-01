@@ -8,7 +8,6 @@ import DirectListLoader from './direct-list-loader';
 import IndirectListLoader from './indirect-list-loader';
 import MultiListLoader from './multi-list-loader';
 import ProxyListLoader from './proxy-list-loader';
-import ReifyingListLoader from './reifying-list-loader';
 import SearchListLoader from './search-list-loader';
 import CustomFilteredListLoader from './custom-filtered-list-loader';
 import TypeFilteredListLoader from './type-filtered-list-loader';
@@ -48,10 +47,6 @@ export function AttrFilter(source, filterName, keyword, type) {
 
 export function CustomFilter(source, filterFn) {
   return new CustomFilteredListLoader(source, filterFn);
-}
-
-export function Reify(source) {
-  return new ReifyingListLoader(source);
 }
 
 export function Cross(localMapping, remoteMapping) {

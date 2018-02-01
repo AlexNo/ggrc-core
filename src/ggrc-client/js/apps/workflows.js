@@ -14,7 +14,6 @@ import {
   Cross,
   Multi,
   CustomFilter,
-  Reify,
   Search,
   TypeFilter,
 } from '../models/mappers/mapper-helpers';
@@ -141,7 +140,6 @@ import Mappings from '../models/mappers/mappings';
       Cycle: {
         cycle_task_groups: Direct(
           'CycleTaskGroup', 'cycle', 'cycle_task_groups'),
-        reify_cycle_task_groups: Reify('cycle_task_groups'),
         workflow: Direct('Workflow', 'cycles', 'workflow'),
       },
 
