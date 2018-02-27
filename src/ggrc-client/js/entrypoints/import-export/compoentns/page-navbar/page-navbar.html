@@ -1,0 +1,39 @@
+<mat-toolbar>
+  <a href="/dashboard" class="logo mat-button">
+    <img src="/static/images/ggrc-logo.svg">
+  </a>
+  <span>Import/Export</span>
+  <div class="spacer"></div>
+  <a href="/dashboard#!task_widget" class="mat-button">
+    <span>My Tasks</span>
+  </a>
+  <a href="/assessments_view" class="mat-button">
+    <span>My Assessments</span>
+  </a>
+  <a href="/objectBrowser" class="mat-button">
+    <span>All Objects</span>
+  </a>
+  <a href="/import" class="mat-button">
+    <span>Import</span>
+  </a>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>person</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <span>user@example.com</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>lock</mat-icon>
+      <span>Administration</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>alarm</mat-icon>
+      <span>Notifications</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>power_settings_new</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

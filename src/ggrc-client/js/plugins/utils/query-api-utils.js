@@ -184,7 +184,7 @@ function buildCountParams(types, relevant, filter) {
  */
 function makeRequest(params) {
   let reqParams = params.data || [];
-  return can.ajax({
+  return $.ajax({
     type: 'POST',
     headers: $.extend({
       'Content-Type': 'application/json',
@@ -217,7 +217,7 @@ function _makeFilter(filter, relevant, additionalFilter) {
   if (relevant) {
     relevant = Array.isArray(relevant) ?
       relevant :
-      can.makeArray(relevant);
+      Array.from(relevant);
     relevantFilters = relevant.map(function (filter) {
       return _makeRelevantFilter(filter);
     });
@@ -231,7 +231,7 @@ function _makeFilter(filter, relevant, additionalFilter) {
   if (additionalFilter) {
     additionalFilter = Array.isArray(additionalFilter) ?
       additionalFilter :
-      can.makeArray(additionalFilter);
+      Array.from(additionalFilter);
     filterList = filterList.concat(additionalFilter);
   }
   if (filterList.length) {
