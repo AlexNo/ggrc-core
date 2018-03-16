@@ -35,8 +35,17 @@ THIS_ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 
 
 def read_imported_file(file_data):  # pylint: disable=unused-argument
+  """mock for reading imported file."""
   csv_file = check_import_file()
   return read_csv_file(csv_file)
+
+
+def read_imported_file_data(file_data):  # pylint: disable=unused-argument
+  """mock for reading imported file."""
+  csv_file = check_import_file()
+  csv_data = read_csv_file(csv_file)
+  csv_file.seek(0)
+  return csv_data, csv_file.read()
 
 
 class SetEncoder(json.JSONEncoder):
@@ -247,21 +256,37 @@ class TestCase(BaseTestCase, object):
     dry_run = kwargs.get("dry_run", False)
     person = kwargs.get("person")
     with tempfile.NamedTemporaryFile(dir=cls.CSV_DIR, suffix=".csv") as tmp:
-      writer = csv.writer(tmp)
-      object_type = None
-      for data in import_data:
-        data = data.copy()
-        data_object_type = data.pop("object_type")
-        keys = data.keys()
-        if data_object_type != object_type:
-          if object_type is not None:
-            writer.writerow([])
-          object_type = data_object_type
-          writer.writerow(["Object type"])
-          writer.writerow([data_object_type] + keys)
-        writer.writerow([""] + [data[k] for k in keys])
-      tmp.seek(0)
+      cls.create_temp_file(tmp, *import_data)
       return cls._import_file(os.path.basename(tmp.name), dry_run, person)
+
+  @classmethod
+  def import_data2(cls, person, *import_data):
+    """generate tmp file in csv directory and import it after that remove file
+
+    import data is dict with required key object_type, other keys are optional
+
+    """
+    with tempfile.NamedTemporaryFile(dir=cls.CSV_DIR, suffix=".csv") as tmp:
+      cls.create_temp_file(tmp, *import_data)
+      return cls.import_file2(os.path.basename(tmp.name), person)
+
+  @staticmethod
+  def create_temp_file(tmp, *import_data):
+    """Create temp file for import"""
+    writer = csv.writer(tmp)
+    object_type = None
+    for data in import_data:
+      data = data.copy()
+      data_object_type = data.pop("object_type")
+      keys = data.keys()
+      if data_object_type != object_type:
+        if object_type is not None:
+          writer.writerow([])
+        object_type = data_object_type
+        writer.writerow(["Object type"])
+        writer.writerow([data_object_type] + keys)
+      writer.writerow([""] + [data[k] for k in keys])
+    tmp.seek(0)
 
   @staticmethod
   def send_import_request(data, dry_run=False, person=None):
@@ -294,6 +319,21 @@ class TestCase(BaseTestCase, object):
     response = self._import_file(filename, person=person)
     self.assertEqual(response_dry, response)
     return response
+
+  @classmethod
+  @patch("ggrc.gdrive.file_actions.get_gdrive_file_data",
+         new=read_imported_file_data)
+  def import_file2(cls, filename, person):
+    """Import a csv file as a specific user."""
+    data = {"file": (open(os.path.join(cls.CSV_DIR, filename)), filename)}
+    headers = {
+        "X-requested-by": "GGRC",
+    }
+    api = Api()
+    api.set_user(person)  # Ok if person is None
+    response = api.client.put("/api/people/{}/imports".format(person.id),
+                              data=data, headers=headers)
+    return json.loads(response.data)
 
   def export_csv(self, data):
     """Export csv handle
