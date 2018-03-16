@@ -19,7 +19,7 @@ from ggrc import db
 
 
 COLLECTION_ALLOWED = ["HEAD", "GET", "POST", "OPTIONS", "PATCH"]
-RESOURCE_ALLOWED = ["HEAD", "GET", "PUT", "DELETE", "OPTIONS"]
+RESOURCE_ALLOWED = ["HEAD", "GET", "PUT", "DELETE", "OPTIONS", "POST"]
 
 
 class TestServices(TestCase):

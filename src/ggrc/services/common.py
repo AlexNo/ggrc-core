@@ -1345,7 +1345,7 @@ class Resource(ModelView):
     app.add_url_rule(
         '{url}/<{type}:{pk}>'.format(url=url, type=cls.pk_type, pk=cls.pk),
         view_func=view_func,
-        methods=['GET', 'PUT', 'DELETE'])
+        methods=['GET', 'PUT', 'POST', 'DELETE'])
 
   # Response helpers
   @classmethod
@@ -1533,8 +1533,25 @@ class ExtendedResource(Resource):
             pk=cls.pk
         ),
         view_func=view_func,
-        methods=['GET']
-    )
+        methods=['GET', 'PUT', 'POST', 'DELETE'])
+    app.add_url_rule(
+        '{url}/<{type}:{pk}>/<command>/<{type}:{pk2}>'.format(
+            url=url,
+            type=cls.pk_type,
+            pk=cls.pk,
+            pk2='id2'
+        ),
+        view_func=view_func,
+        methods=['GET', 'DELETE'])
+    app.add_url_rule(
+        '{url}/<{type}:{pk}>/<command>/<{type}:{pk2}>/<command2>'.format(
+            url=url,
+            type=cls.pk_type,
+            pk=cls.pk,
+            pk2='id2'
+        ),
+        view_func=view_func,
+        methods=['POST'])
 
 
 def filter_resource(resource, depth=0, user_permissions=None):  # noqa
