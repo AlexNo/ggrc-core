@@ -3,6 +3,41 @@
   Licensed under http://www.apache.org/licenses/LICENSE-2.0 <see LICENSE file>
 */
 
+const currentUserId = GGRC.current_user.id;
+
+export const jobStatuses = {
+  SELECT: 'Select',
+  CONFIRM: 'Confirm',
+  NOT_STARTED: 'Not Started',
+  ANALYSIS: 'Analysis',
+  IN_PROGRESS: 'In Progress',
+  BLOCKED: 'Blocked',
+  ANALYSIS_FAILED: 'Analysis Failed',
+  STOPPED: 'Stopped',
+  FAILED: 'Failed',
+  FINISHED: 'Finished',
+};
+
+export const runExport = (options) => {
+  return request(`/api/people/${currentUserId}/exports`, 'PUT', options);
+};
+
+export const getExportJob = (jobId) => {
+  return request(`/api/people/${currentUserId}/exports/${jobId}`, 'GET');
+};
+
+export const getExportsHistory = () => {
+  return request(`/api/people/${currentUserId}/exports`, 'GET');
+};
+
+export const stopExportJob = (jobId) => {
+  return request(`/api/people/${currentUserId}/exports/${jobId}/stop`);
+};
+
+export const deleteExportJob = (jobId) => {
+  return request(`/api/people/${currentUserId}/exports/${jobId}`, 'DELETE');
+};
+
 export const exportRequest = (request) => {
   return $.ajax({
     type: 'POST',
@@ -29,6 +64,33 @@ export const importRequest = (request, isTest) => {
     }, request.headers || {}),
     url: '/_service/import_csv',
     data: JSON.stringify(request.data),
+  });
+};
+
+export const analyseBeforeImport = (fileId) => {
+  return request(`/api/people/${currentUserId}/imports`, 'PUT', {id: fileId});
+};
+
+export const startImport = (jobId) => {
+  return request(`/api/people/${currentUserId}/imports/${jobId}/start`);
+};
+
+export const getImportJobInfo = (jobId) => {
+  return request(`/api/people/${currentUserId}/imports/${jobId}`, 'GET');
+};
+
+export const getImportHistory = () => {
+  return request(`/api/people/${currentUserId}/imports`, 'GET');
+};
+
+/**
+ *
+ * @param jobId
+ * @param format
+ */
+export const downloadContent = (jobId, format = 'csv') => {
+  return request(`/api/people/${currentUserId}/imports/${jobId}`, 'POST', {
+    export_to: format,
   });
 };
 
@@ -96,4 +158,21 @@ export const download = (filename, text) => {
 
 export const fileSafeCurrentDate = () => {
   return moment().format('YYYY-MM-DD_HH-mm-ss');
+};
+
+const request = (url, type = 'POST', data) => {
+  const params = {
+    url,
+    type,
+    headers: {
+      'Content-Type': 'application/json',
+      'X-requested-by': 'GGRC',
+    },
+  };
+
+  if (data) {
+    params.data = data;
+  }
+
+  return $.ajax(params);
 };
