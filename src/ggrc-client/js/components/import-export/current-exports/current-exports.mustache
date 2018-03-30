@@ -13,18 +13,18 @@
     </div>
   {{/inProgress}}
   {{#exports}}
-    <div class="flex-box flex-col current-exports__item">
+    <div class="flex-box flex-col current-exports__item {{#isDisabled id}}disabled{{/isDisabled}}">
       {{#if_equals status 'Failed'}}
         <span class="status-failed">
           <i class="fa fa-"></i>
-          Export failed due to server error. Please try again or correct our support team.
+          Export failed due to server error. Please try again or contact our support team.
         </span>
       {{/if_equals}}
       <h4>
         {{firstnonempty title 'export_objects.csv'}}
-        {{#if_equals status 'Finished'}}
+        {{#canRemove status}}
           <i class="fa fa-trash-o" ($click)="remove(id)"></i>
-        {{/if_equals}}
+        {{/canRemove}}
       </h4>
       <div class="flex-box current-exports__actions">
         {{#switch status}}
@@ -33,8 +33,6 @@
             <spinner {toggle}="true"></spinner>
           {{/case}}
           {{#case 'Failed'}}
-            <button class="btn btn-small btn-white" ($click)="tryAgain(id)">Try again
-            </button>
           {{/case}}
           {{#case 'Finished'}}
             <button class="btn btn-small btn-white" ($click)="downloadCSV(id, title)">
@@ -43,6 +41,9 @@
             <button class="btn btn-small btn-white" ($click)="openSheet(id)">
               Write to Sheet
             </button>
+            {{#isDisabled id}}
+              <spinner {toggle}="true"></spinner>
+            {{/isDisabled}}
           {{/case}}
         {{/switch}}
       </div>

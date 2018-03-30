@@ -4,21 +4,26 @@
 */
 
 import template from './current-exports.mustache';
+import {jobStatuses} from '../import-export-utils';
 
 export default can.Component.extend({
   tag: 'current-exports',
   template,
   viewModel: {
     exports: [],
+    disabled: {},
     inProgress: false,
     tryAgain(id) {
 
     },
     remove(id) {
-      this.dispatch({
-        type: 'removeItem',
-        id,
-      });
+      if (!this.attr(`disabled.${id}`)) {
+        this.dispatch({
+          type: 'removeItem',
+          id,
+        });
+      }
+      this.attr(`disabled.${id}`, true);
     },
     downloadCSV(id, fileName) {
       this.dispatch({
@@ -34,6 +39,23 @@ export default can.Component.extend({
         format: 'gdrive',
         id,
       });
+    },
+  },
+  helpers: {
+    canRemove(status, options) {
+      let canRemove = [jobStatuses.FINISHED, jobStatuses.FAILED]
+        .includes(status());
+
+      return canRemove ?
+        options.fn(options.contexts) :
+        options.inverse(options.contexts);
+    },
+    isDisabled(id, options) {
+      let isDisabled = this.attr(`disabled.${id()}`);
+
+      return isDisabled ?
+        options.fn(options.contexts) :
+        options.inverse(options.contexts);
     },
   },
 });

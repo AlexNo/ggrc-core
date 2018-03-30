@@ -272,8 +272,16 @@ $controlsWidth: 400px;
       padding: 20px 30px;
       border-bottom: 1px solid $itemBorder;
 
+      &.disabled {
+        @include opacity(0.5);
+      }
+
       .status-failed {
+        display: flex;
         margin-bottom: 10px;
+        &:before {
+          @include icon(red);
+        }
       }
     }
 
@@ -282,6 +290,8 @@ $controlsWidth: 400px;
     }
 
     &__actions {
+      align-items: center;
+
       spinner {
         margin-left: 10px;
       }
