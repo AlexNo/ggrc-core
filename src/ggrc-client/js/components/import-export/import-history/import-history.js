@@ -10,11 +10,15 @@ export default can.Component.extend({
   template,
   viewModel: {
     history: [],
+    disabled: {},
     remove(id) {
-      this.dispatch({
-        type: 'removeItem',
-        id,
-      });
+      if (!this.attr(`disabled.${id}`)) {
+        this.dispatch({
+          type: 'removeItem',
+          id,
+        });
+      }
+      this.attr(`disabled.${id}`, true);
     },
     download(id, title) {
       this.dispatch({
