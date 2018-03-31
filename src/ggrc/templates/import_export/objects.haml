@@ -20,7 +20,13 @@
   %body
     %importexport
 
-
+    %script
+      GGRC = window.GGRC || {};
+      GGRC.Settings = {};
+      GGRC.Bootstrap = {};
+      GGRC.config = {};
+      GGRC.current_user = ={ current_user_json()|safe };
+      GGRC.config = ={ config_json()|safe };
 
     %script{ type:'text/javascript', src:'{{config.get("IMPORT_EXPORT_JS_PATH")}}' }
 

@@ -28,6 +28,7 @@ import {DownloadImportTemplatesDialogComponent} from './compoentns/download-impo
 
 // Services
 import { ImportService } from "./services/import-service";
+import { GApiClientService } from "./services/gapi-client";
 
 // import { QueryApiService } from './services/query-api-service';
 
@@ -59,6 +60,7 @@ import { ImportService } from "./services/import-service";
   ],
   providers: [
     ImportService,
+    GApiClientService,
     // QueryApiService,
   ],
   bootstrap: [ImportExportComponent]

@@ -42,6 +42,7 @@
     "@types/core-js": "^0.9.46",
     "@types/gapi": "0.0.35",
     "@types/gapi.auth2": "0.0.47",
+    "@types/google.picker": "0.0.31",
     "@types/node": "^9.4.6",
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "^3.5.0",

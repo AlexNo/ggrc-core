@@ -11,8 +11,6 @@
     I'm importing/updating...
   </p>
 
-  <h4>Choose Templates</h4>
-
   <mat-form-field>
     <mat-select placeholder="Choose Templates" [(ngModel)]="selectedModels" multiple>
       <mat-option *ngFor="let option of importableOptions" [value]="option.model_singular">

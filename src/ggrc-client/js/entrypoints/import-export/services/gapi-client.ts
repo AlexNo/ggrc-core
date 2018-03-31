@@ -5,14 +5,17 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
+// import gapi from 'gapi';
 
-import * as queryApi from '../../../plugins/utils/query-api-utils.js';
+// import * as queryApi from '../../../plugins/utils/query-api-utils.js';
 
 import ImportableOption from '../models/importable-option';
 
 import {IMPORTABLE_OPTIONS} from '../mocks/importable-options';
 import {ExportDTO} from '../models/export-dto';
-import * as GGRC from "../../../@types/global";
+
+
+declare var GGRC: any;
 
 @Injectable()
 export class GApiClientService {
@@ -21,33 +24,37 @@ export class GApiClientService {
   private currentScopes: Array<string> = [
     'https://www.googleapis.com/auth/userinfo.email',
   ];
+  private client: Promise<any>;
+
+  private loadedClientLibraries: Map<string, any> = new Map();
 
   constructor() {
-    this.loadGapi();
+    this.client = this.loadGapi();
   }
 
-  public authorizeGapi(requiredScopes = []): Observable<void> {
+  public authorizeGapi(requiredScopes: Array<string> = []): Promise<any> {
     let needToRequestForNewScopes: boolean = this.addNewScopes(requiredScopes);
-    let token = gapi.auth.getToken();
 
-    queryApi.buildParam();
+    // this.client.subscribe(():void => {});
 
-    if (needToRequestForNewScopes || !token) {
+    return this.client
+      .then(() => {
+        let token = gapi.auth.getToken();
 
-    }
+        if (needToRequestForNewScopes || !token) {
+          return this.runAuthorization(true);
+        } else {
+          throw Error();
+        }
+      }, () => {})
+      .then(() => this.checkLoggedUser(),
+        () => {
+
+        });
   }
 
-  private makeGapiAuthRequest(immediate: boolean) {
-    return gapi.auth.authorize({
-      client_id: GGRC.config.GAPI_CLIENT_ID,
-      login_hint: GGRC.current_user && GGRC.current_user.email,
-      scope: this.currentScopes,
-      immediate,
-    });
-  }
-
-  private loadGapi(): Observable<void> {
-    return Observable.create((observer: Observer<boolean>) => {
+  private loadGapi(): Promise<any> {
+    return new Promise((resolve, reject) => {
       let script = document.createElement('script');
       script.src = this.gapiUrl;
       script.type = 'text/javascript';
@@ -56,8 +63,7 @@ export class GApiClientService {
       document.head.appendChild(script);
 
       script.onload = () => {
-        observer.next(true);
-        observer.complete();
+        resolve();
       };
     });
   }
@@ -73,5 +79,58 @@ export class GApiClientService {
     });
 
     return scopesWereAdded;
+  }
+
+  private runAuthorization(immediate?: boolean): Promise<any> {
+    return this.makeGapiAuthRequest(immediate)
+      .then(() => {}, () => {
+        if (immediate) {
+          this.runAuthorization();
+        }
+      });
+  }
+
+  private makeGapiAuthRequest(immediate: boolean): Promise<any> {
+    return new Promise((resolve, reject) => {
+      gapi.auth.authorize({
+        client_id: GGRC.config.GAPI_CLIENT_ID,
+        // login_hint: GGRC.current_user && GGRC.current_user.email,
+        scope: this.currentScopes,
+        immediate,
+      }, resolve);
+    });
+  }
+
+  private loadClientLibrary(libraryName: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (this.loadedClientLibraries.has(libraryName)) {
+        resolve(this.loadedClientLibraries[libraryName]);
+      } else {
+        gapi.client.load(libraryName, 'v2').then(()=>{
+          let loadedLibrary = gapi.client[libraryName];
+          this.loadedClientLibraries.set(libraryName, loadedLibrary);
+          resolve(loadedLibrary);
+        });
+      }
+    });
+  }
+
+  private checkLoggedUser(): void {
+    this.loadClientLibrary('oauth2').then((oauth2)=> {
+      oauth2.userinfo.get().execute((user: any) => {
+        if (user.error) {
+          // GGRC.Errors.notifier('error', user.error);
+          return;
+        }
+
+        if (user.email.toLowerCase().trim() !==
+          GGRC.current_user.email.toLowerCase().trim()) {
+        //   GGRC.Errors.notifier('warning', `
+        //     You are signed into GGRC as ${GGRC.current_user.email}
+        //     and into Google Apps as ${user.email}.
+        //     You may experience problems uploading evidence.`);
+        }
+      });
+    });
   }
 }
