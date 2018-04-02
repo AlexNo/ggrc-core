@@ -36,16 +36,30 @@ module.exports = function (env) {
       'export': getEntryModules('export'),
       admin: getEntryModules('admin'),
       login: 'entrypoints/login',
+      // polyfills: [
+      //   'core-js/es7/reflect',
+      //   'zone.js',
+      //   '@angular/core',
+      //   '@angular/platform-browser',
+      //   '@angular/platform-browser-dynamic',
+      // ],
+      'import-export': 'entrypoints/import-export/main.ts',
     },
     output: {
       filename: isProd ? '[name].[chunkhash].js' : '[name].js?[hash]',
-      chunkFilename: isProd ? 'chunk.[name].[chunkhash].js' :'chunk.[name].js?[hash]',
+      chunkFilename: isProd ? 'chunk.[name].[chunkhash].js' : 'chunk.[name].js?[hash]',
       sourceMapFilename: '[file].map',
       path: path.join(__dirname, './src/ggrc/static/'),
       publicPath: STATIC_FOLDER,
     },
     module: {
       rules: [{
+        test: /\.ts$/,
+        loader: 'awesome-typescript-loader',
+      }, {
+        test: /\.html$/,
+        loader: 'html-loader',
+      }, {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         include: /node_modules/,
         use: [{
@@ -126,6 +140,7 @@ module.exports = function (env) {
     devtool: isProd ? 'source-map' : 'cheap-module-eval-source-map',
     resolve: {
       modules: [nodeModulesDir, vendorDir],
+      extensions: ['.js', '.ts'],
       alias: {
         can: 'canjs/amd/can/',
         entrypoints: './js/entrypoints',

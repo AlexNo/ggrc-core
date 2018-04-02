@@ -21,12 +21,14 @@ BASE_DIR = os.path.realpath(os.path.join(
 MODULE_DIR = os.path.realpath(os.path.join(os.path.dirname(__file__), '..'))
 SETTINGS_DIR = os.path.join(BASE_DIR, 'ggrc', 'settings')
 THIRD_PARTY_DIR = os.path.realpath(os.path.join(BASE_DIR, '..', 'third_party'))
-MANIFEST_CFG_PATH = os.path.join(BASE_DIR, 'ggrc', 'manifest.json')
+MANIFEST_CFG_PATH = os.path.join(BASE_DIR, 'ggrc', 'canjs-manifest.json')
+A_MANIFEST_CFG_PATH = os.path.join(BASE_DIR, 'ggrc', 'angular-manifest.json')
 
 from ggrc.settings.default import *  # noqa
 
 try:
   manifest_data = json.load(open(MANIFEST_CFG_PATH))  # noqa # pylint: disable=invalid-name
+  a_manifest_data = json.load(open(A_MANIFEST_CFG_PATH))  # noqa # pylint: disable=invalid-name
   STYLES_CSS_PATH = manifest_data['styles.css']
   VENDOR_CSS_PATH = manifest_data['vendor.css']
   VENDOR_JS_PATH = manifest_data['vendor.js']
@@ -34,6 +36,8 @@ try:
   DASHBOARD_JS_PATH = manifest_data['dashboard.js']
   IMPORT_JS_PATH = manifest_data['import.js']
   EXPORT_JS_PATH = manifest_data['export.js']
+  IMPORT_EXPORT_JS_PATH = a_manifest_data['import-export.js']
+  IMPORT_EXPORT_CSS_PATH = a_manifest_data['import-export.css']
   ADMIN_JS_PATH = manifest_data['admin.js']
   LOGIN_JS_PATH = manifest_data['login.js']
 except (KeyError, IOError):

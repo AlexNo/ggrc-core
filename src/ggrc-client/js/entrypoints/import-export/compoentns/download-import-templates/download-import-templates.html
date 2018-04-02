@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Download Template</h2>
+<mat-dialog-content>
+  <p>
+    Don't have an import template ready? We'll create template for you right now.
+  </p>
+  <p>
+    Select which type of objects you want to import, and we'll generate import
+    template, with all fields and instructions.
+  </p>
+  <p>
+    I'm importing/updating...
+  </p>
+
+  <mat-form-field>
+    <mat-select placeholder="Choose Templates" [(ngModel)]="selectedModels" multiple>
+      <mat-option *ngFor="let option of importableOptions" [value]="option.model_singular">
+        {{ option.title_plural }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="downloadTemplates()">Download Templates</button>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
