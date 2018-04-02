@@ -297,6 +297,12 @@ def init_converter_views():
     """Get export view"""
     return render_template("import_export/export.haml")
 
+  @app.route("/objects")
+  @login_required
+  def import_export_view():
+    """Get export view"""
+    return render_template("import_export/objects.haml")
+
 
 def check_import_export_headers():
   """Check headers"""

@@ -1,0 +1,33 @@
+!!!
+%html{ lang:"en", "class": "no-js" }
+  %head
+    %meta{ content:"text/html; charset=utf-8", 'http-equiv':"Content-Type" }
+    %meta{ charset:"utf-8" }
+    %meta{ content: "width=device-width, initial-scale=1.0", name: "viewport" }
+    -#FIXME: (?) META tags for author, description
+
+    %title
+      -block title
+        Governance, Risk and Compliance
+
+    %link{ 'href': '={ url_for("static", filename="favicon.ico") }', 'rel':'icon', 'type':'image/x-icon' }
+
+    %link{ rel:'stylesheet', type:'text/css', href:'{{config.get("IMPORT_EXPORT_CSS_PATH")}}' }
+    %link{ rel:'stylesheet', href:'https://fonts.googleapis.com/icon?family=Material+Icons' }
+
+    -if config.get("GOOGLE_ANALYTICS_ID")
+      %script{ type:'text/javascript', async:'async', src:"//www.google-analytics.com/analytics.js" }
+
+  %body
+    %ggrcapp
+
+    %script
+      GGRC = window.GGRC || {};
+      GGRC.Settings = {};
+      GGRC.Bootstrap = {};
+      GGRC.config = {};
+      GGRC.current_user = ={ current_user_json()|safe };
+      GGRC.config = ={ config_json()|safe };
+
+    %script{ type:'text/javascript', src:'{{config.get("IMPORT_EXPORT_JS_PATH")}}' }
+

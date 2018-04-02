@@ -1,0 +1,20 @@
+.choose-file {
+  background: #43a047;
+  color: white;
+}
+
+.quick-tips h4 {
+  margin-bottom: 20px;
+}
+
+.quick-tips ol {
+  margin-left: 15px;
+}
+
+.quick-tips ol > li {
+  margin-bottom: 10px;
+}
+
+.quick-tips li {
+  line-height: 25px;
+}
