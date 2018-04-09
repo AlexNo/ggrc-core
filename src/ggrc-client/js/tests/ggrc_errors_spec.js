@@ -5,10 +5,11 @@
 
 'use strict';
 
-xdescribe('GGRC.Errors module', function () {
+describe('GGRC.Errors module', function () {
   let notifier;
   let trigger;
   let _originalMessages;
+  let jquerySpy;
 
   beforeAll(function () {
     _originalMessages = _.assign({}, GGRC.Errors.messages);
@@ -17,8 +18,11 @@ xdescribe('GGRC.Errors module', function () {
       'default': 'Some error!',
       '401': 'Mock auth invalid message',
     };
+  });
 
+  beforeEach(() => {
     trigger = spyOn($.prototype, 'trigger');
+    jquerySpy = spyOn($.fn, 'find');
   });
 
   afterAll(function () {
@@ -26,8 +30,10 @@ xdescribe('GGRC.Errors module', function () {
   });
 
   afterEach(function () {
-    expect(window.$).toHaveBeenCalledWith('body');
+    expect(jquerySpy).toHaveBeenCalledWith('body');
+    expect(jquerySpy.calls.count()).toEqual(1);
     expect(trigger.calls.count()).toEqual(1);
+    jquerySpy.calls.reset();
     trigger.calls.reset();
   });
 
