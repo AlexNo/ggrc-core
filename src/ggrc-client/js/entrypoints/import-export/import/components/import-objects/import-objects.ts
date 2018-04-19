@@ -14,13 +14,13 @@ declare var GGRC: any;
   styleUrls: ['./import-objects.css'],
   templateUrl: './import-objects.html',
 })
-export class ImportObjectsComponent {
+export class ImportObjectsComponent implements OnInit {
   constructor(public dialog: MatDialog, public gclient: GApiClientService) {
   }
 
-  // ngOnInit() {
-  //
-  // }
+  ngOnInit() {
+
+  }
 
   openDownloadTemplatesDialog(): void {
     const dialogRef = this.dialog.open(DownloadImportTemplatesDialogComponent, {

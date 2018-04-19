@@ -1,3 +1,4 @@
 export interface ImportExportJob {
-  id: string,
+  id: number,
+  status: string,
 }
