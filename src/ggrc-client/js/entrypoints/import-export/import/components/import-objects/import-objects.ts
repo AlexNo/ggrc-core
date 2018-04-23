@@ -1,11 +1,16 @@
 import {
   Component,
+  Input,
   OnInit,
   Inject,
 } from '@angular/core';
+import { Store } from '@ngrx/store';
 import {MatDialog} from '@angular/material';
 import {DownloadImportTemplatesDialogComponent} from '../download-import-templates/download-import-templates';
 import {GApiClientService} from '../../../gdrive/services/gapi-client';
+
+import { Observable } from 'rxjs/Observable';
+import {ImportExportJob} from "../../../models/ImportExportJob";
 
 declare var GGRC: any;
 
@@ -15,11 +20,16 @@ declare var GGRC: any;
   templateUrl: './import-objects.html',
 })
 export class ImportObjectsComponent implements OnInit {
-  constructor(public dialog: MatDialog, public gclient: GApiClientService) {
+
+  @Input()
+  currentJob: ImportExportJob;
+
+  constructor(public dialog: MatDialog,
+              public gclient: GApiClientService) {
   }
 
   ngOnInit() {
-
+    console.log('import-objects');
   }
 
   openDownloadTemplatesDialog(): void {

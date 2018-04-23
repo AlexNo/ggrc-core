@@ -38,7 +38,24 @@ export class ImportService {
     return this.http.post(this.exportUrl, data, httpOptions);
   }
 
-  public loadImportHistory(): Observable<ImportExportJob[]> {
-    return this.http.get('/api/people/1/imports');
+  public loadImportHistory() {
+    const httpOptions = {
+      headers: this.headers,
+    };
+    return this.http.get('/api/people/150/imports', httpOptions);
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      // this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 }

@@ -39,6 +39,4 @@ export const reducer = (state = initialState, action: ImportHistoryActions.Actio
   }
 };
 
-export const getFinished = (state: State) => state.finished;
-
-export const getIds = (state: State) => state.ids;
+export const getCurrentJob = (state: State) => state.currentJob;

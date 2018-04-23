@@ -6,7 +6,6 @@ body {
 }
 
 section.content {
-  margin: 40px;
-  padding: 20px;
-  background: white;
+  margin: 20px 40px;
+  padding: 0 20px;
 }

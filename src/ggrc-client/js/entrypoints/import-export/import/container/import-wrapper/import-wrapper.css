@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: row;
+}
+
+.main {
+  margin-right: 10px;
+}
+
+.history {
+  width: 550px;
+}

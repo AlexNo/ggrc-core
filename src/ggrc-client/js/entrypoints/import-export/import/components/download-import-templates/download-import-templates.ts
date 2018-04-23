@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import ImportableOption from '../../../models/importable-option';
-import {ImportService} from '../../services/import-service';
+import {ImportService} from '../../services/import.service';
 import {ExportDetails, ExportDTO} from '../../../models/export-dto';
 
 @Component({
