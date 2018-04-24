@@ -11,7 +11,7 @@ import { of } from 'rxjs/observable/of';
 import {catchError, map, tap} from 'rxjs/operators';
 
 import {ImportService} from "../services/import.service";
-import * as historyActions from '../actions/history.actions';
+import * as importActions from '../actions/current-import.actions';
 
 
 @Injectable()
@@ -21,10 +21,10 @@ export class ImportHistoryEffects {
 
   @Effect()
   loadImportHistory$ = this.actions$
-    .ofType(historyActions.LOAD)
-    .mergeMap(() => this.importSrv.loadImportHistory()
+    .ofType(importActions.SELECT_FILE)
+    .mergeMap(() => this.importSrv.selectFile()
       .map((history: any) => {
-        return new historyActions.LoadCompleteAction(history);
+        return new importActions.SelectFileAction(history);
       }))
     .catch(() => of(new historyActions.LoadCompleteAction([])));
 }

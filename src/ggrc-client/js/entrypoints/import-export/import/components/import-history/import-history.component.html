@@ -1,2 +1,11 @@
 <mat-card>Import History</mat-card>
-<mat-card *ngFor="let job of history">{{job.id}}</mat-card>
+<mat-card *ngFor="let job of history">
+  <mat-card-header>
+    <mat-card-subtitle>{{job.created_at}}</mat-card-subtitle>
+    <mat-card-title>
+      {{job.title}}
+      <mat-icon svgIcon="thumbs-up"></mat-icon>
+      <mat-icon svgIcon="thumbs-up"></mat-icon>
+    </mat-card-title>
+  </mat-card-header>
+</mat-card>

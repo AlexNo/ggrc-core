@@ -1,25 +1,33 @@
 import {
   Component,
-  OnInit,
   Input,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 
 import {ImportExportJob} from '../../../models/ImportExportJob';
 
-
 @Component({
   selector: 'import-history',
+  styleUrls: ['./import-history.css'],
   templateUrl: 'import-history.component.html'
 })
 
-export class ImportHistoryComponent implements OnInit {
-
+export class ImportHistoryComponent {
   @Input()
   history: ImportExportJob[];
 
-  constructor() {
+  @Output()
+  onRemove = new EventEmitter<number>();
+
+  @Output()
+  onDownload = new EventEmitter<ImportExportJob>();
+
+  remove(id: number): void {
+    this.onRemove.emit(id);
   }
 
-  ngOnInit() {
+  download(job: ImportExportJob): void {
+    this.onDownload.emit(job);
   }
 }

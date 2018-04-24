@@ -10,7 +10,6 @@ import * as history from '../../actions/history.actions';
 import { Observable } from 'rxjs/Observable';
 import {ImportExportJob} from "../../../models/ImportExportJob";
 
-
 @Component({
   selector: 'import-wrapper',
   // changeDetection: ChangeDetectionStrategy.OnPush,

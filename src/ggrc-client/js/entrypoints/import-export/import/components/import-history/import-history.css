@@ -1,1 +1,7 @@
+mat-card {
+  margin-bottom: 10px;
+}
 
+mat-card-title {
+  margin-bottom: 0;
+}
